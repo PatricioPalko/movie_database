@@ -1,0 +1,59 @@
+@import "../Variables.scss";
+
+.navbar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 1000;
+  background-color: transparent;
+  padding: 0;
+  transition: 0.2s background-color ease, 0.2s height ease;
+
+  &.navWrap.main {
+    display: block;
+    min-width: 100%;
+    border: none;
+    height: 100px;
+    .navWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      transition: 0.3s height ease-in-out;
+      padding: 0 20px;
+      .navbarCollapse {
+        .navbarNav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          margin: 0;
+          .navItem {
+            flex: 0 1 auto;
+            padding: 8px;
+            text-decoration: none;
+            margin: 0 12px;
+            &.active {
+              span {
+                color: $third-color;
+              }
+            }
+            span {
+              font-size: 14px;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 4px;
+              transition: all 0.2s;
+            }
+            &:hover span {
+              color: $third-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
