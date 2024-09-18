@@ -1,0 +1,36 @@
+@import "./Variables.scss";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  color: $font-color;
+  letter-spacing: 1px;
+  font-weight: $font-weight-default;
+}
+
+body {
+  background-color: $main-color;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1 {
+  color: $contrast-cold-color;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.button {
+  background-color: $main-color;
+}
