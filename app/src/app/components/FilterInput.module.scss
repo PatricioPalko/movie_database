@@ -1,0 +1,24 @@
+@import "../Variables.scss";
+
+.inputWrapper {
+  .filterItem {
+    margin: 32px 0;
+    background-color: $secondary-color;
+    .filterInput {
+      height: 48px;
+      color: $font-color;
+      padding: 0 10px;
+      &:hover {
+        &:before {
+          border-bottom: 2px solid $third-color !important;
+        }
+      }
+      &:after {
+        border-bottom: 2px solid $font-color !important;
+      }
+    }
+  }
+  label {
+    color: $main-color;
+  }
+}

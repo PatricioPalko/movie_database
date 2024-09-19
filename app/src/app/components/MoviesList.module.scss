@@ -1,0 +1,54 @@
+@import "../Variables.scss";
+
+.moviesList {
+  .tpl {
+    padding: 80px 0;
+    .wrapper {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      .movieItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        flex-basis: calc(100% / 4 - 20px);
+        margin: 0 10px 40px;
+        overflow: hidden;
+        height: 450px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 0;
+        min-width: 300px;
+        .title {
+          line-height: 1.1;
+          z-index: 2;
+          font-weight: 500;
+          margin: 16px 8px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          white-space: nowrap;
+          color: $font-color;
+        }
+        .gradient {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          height: 100%;
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 40%,
+            #222831 100%
+          );
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
+
+.noResults {
+  padding: 16px 0;
+}
