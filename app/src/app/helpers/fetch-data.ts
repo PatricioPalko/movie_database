@@ -12,3 +12,11 @@ export const fetchAllMovies = async (searchTerm: string) => {
   }
   return response;
 };
+
+export const fetchSingleMovie = async (title: string) => {
+  const response = await fetch(`${apiEndpoint}/?i=${title}&apikey=${apiKey}`);
+  if(!response.ok) { 
+    throw new Error("Failed to fetch single movie data");
+  }
+  return response;
+};

@@ -1,5 +1,6 @@
 "use client";
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "../globals.scss";
@@ -11,6 +12,7 @@ interface Movie {
   Title: string;
   imdbID: string;
   Poster: string;
+  Year: string;
 }
 
 const MoviesList = () => {
@@ -50,15 +52,25 @@ const MoviesList = () => {
           <Box className={styles.tpl}>
             <List className={styles.wrapper}>
               {movies.map((movie, id) => (
-                <ListItem
-                  key={id}
-                  className={styles.movieItem}
-                  style={{ backgroundImage: `url(${movie.Poster})` }}
-                >
-                  <Box className={styles.gradient}></Box>
-                  <Typography component={"h3"} className={styles.title}>
-                    {movie.Title}
-                  </Typography>
+                <ListItem key={id} className={styles.movieItem}>
+                  <Link
+                    href={`/movie/${movie.imdbID}`}
+                    className={styles.movieLink}
+                  >
+                    <Box
+                      className={styles.backgroundImage}
+                      style={{ backgroundImage: `url(${movie.Poster})` }}
+                    ></Box>
+                    <Box className={styles.gradient}></Box>
+                    <Box className={styles.infoWrapper}>
+                      <Typography component={"span"} className={styles.year}>
+                        {movie.Year}
+                      </Typography>
+                      <Typography component={"h3"} className={styles.title}>
+                        {movie.Title}
+                      </Typography>
+                    </Box>
+                  </Link>
                 </ListItem>
               ))}
             </List>

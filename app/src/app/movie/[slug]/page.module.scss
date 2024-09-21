@@ -1,0 +1,176 @@
+@import "../../Variables.scss";
+
+.movieDetail {
+  padding-top: 100px;
+  .tpl {
+    padding: 80px 0;
+    .wrapper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      .wrapperItem {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-basis: calc(100% / 2 - 40px);
+        overflow: hidden;
+        padding: 0;
+        min-width: 300px;
+        .image {
+          height: inherit;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+      .infoWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-basis: calc(100% / 2 - 40px);
+        > * {
+          margin: 8px 0;
+        }
+        .title {
+          line-height: 1;
+          font-weight: 500;
+          color: $font-color;
+          margin: 0 0 4px;
+        }
+        .paragraph {
+          line-height: 1.75;
+          font-size: 20px;
+          font-weight: 300;
+          margin: 16px 0 32px 0;
+          &.paragraphYellow {
+            color: $third-color;
+          }
+        }
+        .genres {
+          margin: 8px 0;
+          .genre {
+            text-transform: uppercase;
+          }
+          .genre + .genre {
+            &::before {
+              content: "|";
+              color: $fourth-color;
+              font-weight: 600;
+              margin: 0 6px;
+            }
+          }
+          .rated {
+            &::before {
+              content: "-";
+              color: $fourth-color;
+              font-weight: 600;
+              margin: 0 6px;
+            }
+          }
+        }
+        .typeWrapper {
+          display: flex;
+          .type {
+            color: $third-color;
+            font-weight: 300;
+            font-size: 20px;
+            margin: 0;
+            line-height: 1;
+          }
+          span + span {
+            &::before {
+              content: "|";
+              color: $fourth-color;
+              font-weight: 400;
+              margin: 0 6px;
+            }
+          }
+        }
+      }
+      .awardsWrapper {
+        margin-bottom: 32px;
+        .awardIcon {
+          fill: $third-color;
+          margin-right: 8px;
+        }
+      }
+      .detailedInfoWrapper {
+        .item {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 0 16px 40px 0;
+          .title {
+            color: $third-color;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+          }
+          .value {
+            color: $font-color;
+            font-size: 24px;
+            font-weight: 300;
+            font-size: 20px;
+            line-height: 1.5;
+            letter-spacing: 1px;
+            &.value--country {
+              display: flex;
+              align-items: center;
+              img {
+                width: 24px;
+                height: 24px;
+                margin-right: 8px;
+              }
+            }
+          }
+        }
+      }
+      .gaugeWrapper {
+        text-align: center;
+        .gauge {
+          text {
+            fill: $third-color;
+          }
+        }
+        .votes {
+          font-size: 14px;
+          margin-top: 8px;
+          display: block;
+        }
+      }
+      .ratingWrapper {
+        display: flex;
+        align-items: flex-end;
+        margin: 48px 0;
+        .ratingItemsWrapper {
+          display: flex;
+          align-items: flex-start;
+          margin-left: 32px;
+          .ratingItem {
+            flex-basis: calc(100% / 3 - 8px);
+            margin: 0 8px;
+            .ratingValueWrapper {
+              display: flex;
+              align-items: baseline;
+              .ratingValue {
+                font-size: 32px;
+              }
+              .ratingValueSmaller {
+                font-size: 16px;
+                font-weight: 600;
+                color: $fourth-color;
+                margin-left: 2px;
+              }
+            }
+            .ratingSource {
+              text-transform: uppercase;
+              color: $fourth-color;
+              font-size: 14px;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+}

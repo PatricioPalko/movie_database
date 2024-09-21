@@ -11,38 +11,69 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: flex-end;
         flex-basis: calc(100% / 4 - 20px);
         margin: 0 10px 40px;
         overflow: hidden;
         height: 450px;
-        background-repeat: no-repeat;
-        background-size: cover;
         padding: 0;
         min-width: 300px;
-        .title {
-          line-height: 1.1;
-          z-index: 2;
-          font-weight: 500;
-          margin: 16px 8px;
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          white-space: nowrap;
-          color: $font-color;
-        }
-        .gradient {
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          left: 0;
-          height: 100%;
-          background: linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0) 40%,
-            #222831 100%
-          );
-          z-index: 1;
+        .movieLink {
+          height: inherit;
+          width: 100%;
+          .backgroundImage {
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: inherit;
+            width: 100%;
+            transition: 0.25s ease scale;
+          }
+          .infoWrapper {
+            margin: 12px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+            .year {
+              color: $third-color;
+              font-weight: 300;
+              letter-spacing: 0px;
+            }
+            .title {
+              line-height: 1.1;
+              font-weight: 500;
+              white-space: nowrap;
+              color: $font-color;
+              font-size: 1.5em;
+            }
+          }
+          .gradient {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(
+              180deg,
+              rgba(34, 40, 49, 0) 55%,
+              rgba(34, 40, 49, 1) 96%
+            );
+            z-index: 1;
+            transition: 0.25s ease background;
+          }
+          &:hover {
+            cursor: pointer;
+            .backgroundImage {
+              scale: 1.03;
+            }
+            .gradient {
+              background: linear-gradient(
+                180deg,
+                rgba(34, 40, 49, 0) 55%,
+                rgba(34, 40, 49, 1) 115%
+              );
+            }
+          }
         }
       }
     }
