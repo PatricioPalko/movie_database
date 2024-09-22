@@ -2,6 +2,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import bg from "../../public/assets/bg.jpg";
 import FilterInput from "./components/FilterInput";
 import MoviesList from "./components/MoviesList";
 import "./globals.scss";
@@ -46,6 +47,10 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <Box
+          style={{ backgroundImage: `url(${bg.src})` }}
+          className={styles.bg}
+        ></Box>
         <Container maxWidth={"xl"} className={styles.container}>
           <Box className={styles.tpl}>
             <Typography variant="h1" component={"h1"} className={styles.title}>
