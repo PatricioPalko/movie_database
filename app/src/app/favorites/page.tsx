@@ -1,4 +1,5 @@
 "use client";
+import { Box, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import MoviesList from "../components/MoviesList";
 import "../globals.scss";
@@ -58,12 +59,18 @@ export default function FavoriteMoviesPage() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <h1>Favorites</h1>
-        <MoviesList
-          movies={favoriteMovies}
-          loading={loading}
-          isFavorites={true}
-        />
+        <Container maxWidth={"xl"} className={styles.container}>
+          <Box className={styles.tpl}>
+            <Typography variant="h1" component={"h1"} className={styles.title}>
+              Favorite movies
+            </Typography>
+            <MoviesList
+              movies={favoriteMovies}
+              loading={loading}
+              isFavorites={true}
+            />
+          </Box>
+        </Container>
       </main>
       <footer className={styles.footer}></footer>
     </div>

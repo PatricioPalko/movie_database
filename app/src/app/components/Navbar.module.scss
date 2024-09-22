@@ -8,7 +8,7 @@
   right: 0;
   height: 100px;
   z-index: 1000;
-  background-color: transparent;
+  background-color: $main-color;
   padding: 0;
   transition: 0.2s background-color ease, 0.2s height ease;
 
@@ -36,6 +36,12 @@
             padding: 8px;
             text-decoration: none;
             margin: 0 12px;
+            &.unactive {
+              pointer-events: none;
+              span {
+                color: $secondary-color;
+              }
+            }
             &.active {
               span {
                 color: $third-color;

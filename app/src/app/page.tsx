@@ -1,4 +1,5 @@
 "use client";
+import { Box, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import FilterInput from "./components/FilterInput";
@@ -45,10 +46,18 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <h1>Movie database</h1>
-        <span>Simple movie database by CODERAMA</span>
-        <FilterInput />
-        <MoviesList movies={movies} loading={loading} isFavorites={false} />
+        <Container maxWidth={"xl"} className={styles.container}>
+          <Box className={styles.tpl}>
+            <Typography variant="h1" component={"h1"} className={styles.title}>
+              Movie database
+            </Typography>
+            <Typography component={"span"}>
+              Simple movie database by CODERAMA
+            </Typography>
+            <FilterInput />
+            <MoviesList movies={movies} loading={loading} isFavorites={false} />
+          </Box>
+        </Container>
       </main>
       <footer className={styles.footer}></footer>
     </div>
