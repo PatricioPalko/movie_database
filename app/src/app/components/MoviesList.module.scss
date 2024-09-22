@@ -21,6 +21,13 @@
         .movieLink {
           height: inherit;
           width: 100%;
+          .icon.liked {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            fill: $third-color;
+            font-size: 40px;
+          }
           .backgroundImage {
             background-repeat: no-repeat;
             background-size: cover;

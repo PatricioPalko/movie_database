@@ -41,7 +41,7 @@ const Navbar = () => {
                     className={`${styles.navItem} ${
                       activeItem === page.label ? styles.active : ""
                     } `}
-                    href={`${page.url === "domov" ? "/" : `/${page.url}`}`}
+                    href={`${page.url === "domov" ? "/" : `${page.url}`}`}
                     key={id}
                     onClick={() => handleItemClick(page.label)}
                   >

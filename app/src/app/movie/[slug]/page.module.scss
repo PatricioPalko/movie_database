@@ -30,11 +30,34 @@
         > * {
           margin: 8px 0;
         }
+        .likeBtn {
+          position: absolute;
+          top: -55px;
+          left: -20px;
+          &:hover {
+            background-color: transparent;
+          }
+          .icon {
+            font-size: 40px;
+            fill: $fourth-color;
+            &:hover,
+            &.liked {
+              fill: $third-color;
+            }
+          }
+        }
+        .likeText {
+          position: absolute;
+          top: -37px;
+          left: 50px;
+          white-space: nowrap;
+        }
         .title {
           line-height: 1;
           font-weight: 500;
           color: $font-color;
           margin: 0 0 4px;
+          position: relative;
         }
         .paragraph {
           line-height: 1.75;

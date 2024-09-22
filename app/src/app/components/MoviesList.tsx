@@ -1,11 +1,7 @@
-"use client";
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { MdOutlineStar } from "react-icons/md";
 import "../globals.scss";
-import { fetchAllMovies } from "../helpers/fetch-data";
-import { RootState } from "../lib/store";
 import styles from "./MoviesList.module.scss";
 
 interface Movie {
@@ -15,32 +11,15 @@ interface Movie {
   Year: string;
 }
 
-const MoviesList = () => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const countState = useSelector((state: RootState) => state.movieFilter.value);
-
-  useEffect(() => {
-    const fetchMoviesByName = async () => {
-      setLoading(true);
-      try {
-        const response = await fetchAllMovies(countState);
-        const data = await response.json();
-        if (data.Search) {
-          setMovies(data.Search);
-        } else {
-          setMovies([]);
-        }
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMoviesByName();
-  }, [countState]);
-
+const MoviesList = ({
+  movies,
+  loading,
+  isFavorites,
+}: {
+  movies: Movie[];
+  loading: boolean;
+  isFavorites: boolean;
+}) => {
   return (
     <>
       {loading ? (
@@ -62,6 +41,11 @@ const MoviesList = () => {
                       style={{ backgroundImage: `url(${movie.Poster})` }}
                     ></Box>
                     <Box className={styles.gradient}></Box>
+                    {isFavorites && (
+                      <MdOutlineStar
+                        className={`${styles.icon} ${styles.liked}`}
+                      />
+                    )}
                     <Box className={styles.infoWrapper}>
                       <Typography component={"span"} className={styles.year}>
                         {movie.Year}

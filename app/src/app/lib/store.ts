@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import InsertValueSlice from '../components/InsertValueSlice'
+import likeSlice from '../components/LikeSlice'
 export const makeStore = () => {
   return configureStore({
     reducer: {
       movieFilter: InsertValueSlice,
+      like: likeSlice
     },
   })
 }

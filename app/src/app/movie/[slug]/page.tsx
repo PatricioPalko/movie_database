@@ -1,11 +1,18 @@
 "use client";
 import { fetchSingleMovie } from "@/app/helpers/fetch-data";
-import { Box, Container, Grid2, Typography } from "@mui/material";
+import { Box, Button, Container, Grid2, Typography } from "@mui/material";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import Image from "next/Image";
 import { useEffect, useState } from "react";
 import { FaAward } from "react-icons/fa";
+import { MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../../components/LikeSlice";
 import "../../globals.scss";
+import { RootState } from "../../lib/store";
 import styles from "./page.module.scss";
 
 export interface Rating {
@@ -54,11 +61,19 @@ const extractRating = (input: string): string | null => {
 
 export default function MovieDetailPage({ params }: BlogPageProps) {
   const { slug } = params;
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(true);
   const [singleMovieData, setSingleMovieData] = useState<Movie | null>(null);
   const genres = singleMovieData?.Genre?.split(", ");
   const [filteredSingleMovieData, setFilteredSingleMovieData] =
     useState<FilteredMovieData | null>(null);
+
+  const favoriteMovies = useSelector(
+    (state: RootState) => state.like.favoriteMoviesList
+  );
+  const isFavorite = favoriteMovies.some(
+    (favMovie: Movie) => favMovie.imdbID === slug
+  );
 
   useEffect(() => {
     const fetchSingleMoviesData = async () => {
@@ -88,6 +103,16 @@ export default function MovieDetailPage({ params }: BlogPageProps) {
     fetchSingleMoviesData();
   }, []);
 
+  const handleLikeClick = () => {
+    if (singleMovieData) {
+      if (isFavorite) {
+        dispatch(removeFromFavorites(singleMovieData.imdbID));
+      } else {
+        dispatch(addToFavorites(singleMovieData));
+      }
+    }
+  };
+
   return (
     <main>
       <Container maxWidth={"lg"} className={styles.movieDetail}>
@@ -111,6 +136,22 @@ export default function MovieDetailPage({ params }: BlogPageProps) {
                   component={"h3"}
                   className={styles.title}
                 >
+                  <Button onClick={handleLikeClick} className={styles.likeBtn}>
+                    {isFavorite === false ? (
+                      <MdOutlineStarOutline
+                        onClick={handleLikeClick}
+                        className={styles.icon}
+                      />
+                    ) : (
+                      <MdOutlineStar
+                        onClick={handleLikeClick}
+                        className={`${styles.icon} ${styles.liked}`}
+                      />
+                    )}
+                  </Button>
+                  <Typography component={"span"} className={styles.likeText}>
+                    {isFavorite === false ? "Like it now" : "I love this!"}
+                  </Typography>
                   {singleMovieData.Title}
                 </Typography>
                 <Box className={styles.genres}>
