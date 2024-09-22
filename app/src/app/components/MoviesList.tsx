@@ -1,6 +1,6 @@
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
 import Link from "next/link";
-import { MdOutlineStar } from "react-icons/md";
+import { MdOutlineImageNotSupported, MdOutlineStar } from "react-icons/md";
 import "../globals.scss";
 import styles from "./MoviesList.module.scss";
 
@@ -36,10 +36,16 @@ const MoviesList = ({
                     href={`/movie/${movie.imdbID}`}
                     className={styles.movieLink}
                   >
-                    <Box
-                      className={styles.backgroundImage}
-                      style={{ backgroundImage: `url(${movie.Poster})` }}
-                    ></Box>
+                    {movie.Poster !== "N/A" ? (
+                      <Box
+                        className={styles.backgroundImage}
+                        style={{ backgroundImage: `url(${movie.Poster})` }}
+                      ></Box>
+                    ) : (
+                      <Box className={styles.noImage}>
+                        <MdOutlineImageNotSupported />
+                      </Box>
+                    )}
                     <Box className={styles.gradient}></Box>
                     {isFavorites && (
                       <MdOutlineStar

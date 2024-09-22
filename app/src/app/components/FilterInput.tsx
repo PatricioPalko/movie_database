@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import styles from "./FilterInput.module.scss";
 import { insertValue } from "./InsertValueSlice";
 
-export default function FilterInput() {
+export default function FilterInput({ searchTerm }: { searchTerm: string }) {
   const dispatch = useDispatch();
 
   return (
@@ -24,6 +24,7 @@ export default function FilterInput() {
         }}
         placeholder="Search..."
         autoFocus
+        value={searchTerm}
       />
     </Box>
   );

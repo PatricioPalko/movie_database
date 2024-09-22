@@ -21,6 +21,15 @@
         .movieLink {
           height: inherit;
           width: 100%;
+          .noImage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: inherit;
+            margin: 0 auto;
+            font-size: 100px;
+          }
           .icon.liked {
             position: absolute;
             top: 8px;

@@ -5,7 +5,11 @@ import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import Image from "next/Image";
 import { useEffect, useState } from "react";
 import { FaAward } from "react-icons/fa";
-import { MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
+import {
+  MdOutlineImageNotSupported,
+  MdOutlineStar,
+  MdOutlineStarOutline,
+} from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToFavorites,
@@ -122,13 +126,20 @@ export default function MovieDetailPage({ params }: BlogPageProps) {
           ) : singleMovieData ? (
             <Grid2 container spacing={8} className={styles.wrapper}>
               <Grid2 className={styles.wrapperItem}>
-                <Image
-                  src={singleMovieData.Poster}
-                  alt={singleMovieData.Title}
-                  width={600}
-                  height={450}
-                  className={styles.image}
-                />
+                {singleMovieData.Poster !== "N/A" ? (
+                  <Image
+                    src={singleMovieData.Poster}
+                    alt={singleMovieData.Title}
+                    width={600}
+                    height={450}
+                    className={styles.image}
+                    priority
+                  />
+                ) : (
+                  <Box className={styles.noImage}>
+                    <MdOutlineImageNotSupported />
+                  </Box>
+                )}
               </Grid2>
               <Grid2 className={styles.infoWrapper}>
                 <Typography
@@ -237,22 +248,25 @@ export default function MovieDetailPage({ params }: BlogPageProps) {
                     ))}
                   </Box>
                 </Box>
-
-                <Typography component={"p"} className={styles.paragraph}>
-                  {singleMovieData.Plot}
-                </Typography>
-                <Box className={styles.awardsWrapper}>
-                  <FaAward className={styles.awardIcon} />
-                  <Typography
-                    component={"span"}
-                    className={`${styles.paragraph} ${styles.paragraphYellow}`}
-                  >
-                    {`Awards: `}
+                {singleMovieData.Plot !== "N/A" ? (
+                  <Typography component={"p"} className={styles.paragraph}>
+                    {singleMovieData.Plot}
                   </Typography>
-                  <Typography component={"span"} className={styles.paragraph}>
-                    {singleMovieData.Awards}
-                  </Typography>
-                </Box>
+                ) : null}
+                {singleMovieData.Awards !== "N/A" ? (
+                  <Box className={styles.awardsWrapper}>
+                    <FaAward className={styles.awardIcon} />
+                    <Typography
+                      component={"span"}
+                      className={`${styles.paragraph} ${styles.paragraphYellow}`}
+                    >
+                      {`Awards: `}
+                    </Typography>
+                    <Typography component={"span"} className={styles.paragraph}>
+                      {singleMovieData.Awards}
+                    </Typography>
+                  </Box>
+                ) : null}
                 <Box className={styles.detailedInfoWrapper}>
                   {Object.entries(filteredSingleMovieData ?? {}).map(
                     ([key, value], id: number) => (

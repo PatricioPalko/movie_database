@@ -54,7 +54,7 @@ export default function Home() {
             <Typography component={"span"}>
               Simple movie database by CODERAMA
             </Typography>
-            <FilterInput />
+            <FilterInput searchTerm={movieState} />
             <MoviesList movies={movies} loading={loading} isFavorites={false} />
           </Box>
         </Container>
