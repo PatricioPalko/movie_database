@@ -15,54 +15,59 @@ const MoviesList = ({
   movies,
   loading,
   isFavorites,
+  error,
 }: {
   movies: Movie[];
   loading: boolean;
   isFavorites: boolean;
+  error: any;
 }) => {
   return (
     <>
       {loading ? (
         <Box className={styles.noResults}>Loading the list of movies</Box>
-      ) : movies.length === 0 ? (
+      ) : error ? (
+        <Box className={styles.noResults}>Error</Box>
+      ) : movies && movies.length === 0 ? (
         <Box className={styles.noResults}>No results, try again</Box>
       ) : (
         <Container disableGutters maxWidth={"xl"} className={styles.moviesList}>
           <Box className={styles.tpl}>
             <List className={styles.wrapper}>
-              {movies.map((movie, id) => (
-                <ListItem key={id} className={styles.movieItem}>
-                  <Link
-                    href={`/movie/${movie.imdbID}`}
-                    className={styles.movieLink}
-                  >
-                    {movie.Poster !== "N/A" ? (
-                      <Box
-                        className={styles.backgroundImage}
-                        style={{ backgroundImage: `url(${movie.Poster})` }}
-                      ></Box>
-                    ) : (
-                      <Box className={styles.noImage}>
-                        <MdOutlineImageNotSupported />
+              {movies &&
+                movies.map((movie, id) => (
+                  <ListItem key={id} className={styles.movieItem}>
+                    <Link
+                      href={`/movie/${movie.imdbID}`}
+                      className={styles.movieLink}
+                    >
+                      {movie.Poster !== "N/A" ? (
+                        <Box
+                          className={styles.backgroundImage}
+                          style={{ backgroundImage: `url(${movie.Poster})` }}
+                        ></Box>
+                      ) : (
+                        <Box className={styles.noImage}>
+                          <MdOutlineImageNotSupported />
+                        </Box>
+                      )}
+                      <Box className={styles.gradient}></Box>
+                      {isFavorites && (
+                        <MdOutlineStar
+                          className={`${styles.icon} ${styles.liked}`}
+                        />
+                      )}
+                      <Box className={styles.infoWrapper}>
+                        <Typography component={"span"} className={styles.year}>
+                          {movie.Year}
+                        </Typography>
+                        <Typography component={"h3"} className={styles.title}>
+                          {movie.Title}
+                        </Typography>
                       </Box>
-                    )}
-                    <Box className={styles.gradient}></Box>
-                    {isFavorites && (
-                      <MdOutlineStar
-                        className={`${styles.icon} ${styles.liked}`}
-                      />
-                    )}
-                    <Box className={styles.infoWrapper}>
-                      <Typography component={"span"} className={styles.year}>
-                        {movie.Year}
-                      </Typography>
-                      <Typography component={"h3"} className={styles.title}>
-                        {movie.Title}
-                      </Typography>
-                    </Box>
-                  </Link>
-                </ListItem>
-              ))}
+                    </Link>
+                  </ListItem>
+                ))}
             </List>
           </Box>
         </Container>

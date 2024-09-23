@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+"use client";
 import { Poppins } from "next/font/google";
+import { QueryClient, QueryClientProvider } from "react-query";
 import Navbar from "./components/Navbar";
 import "./globals.scss";
 import StoreProvider from "./StoreProvider";
@@ -10,10 +11,7 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "Movie database",
-  description: "Created by Patrik Palko",
-};
+const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -24,10 +22,12 @@ export default function RootLayout({
     <html lang="en">
       <StoreProvider>
         <ThemeClient>
-          <body className={`${poppins.className} `}>
-            <Navbar />
-            {children}
-          </body>
+          <QueryClientProvider client={queryClient}>
+            <body className={`${poppins.className} `}>
+              <Navbar />
+              {children}
+            </body>
+          </QueryClientProvider>
         </ThemeClient>
       </StoreProvider>
     </html>

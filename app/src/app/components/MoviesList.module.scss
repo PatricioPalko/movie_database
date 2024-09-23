@@ -2,7 +2,6 @@
 
 .moviesList {
   .tpl {
-    padding: 80px 0;
     .wrapper {
       display: flex;
       align-items: flex-start;
@@ -97,5 +96,5 @@
 }
 
 .noResults {
-  padding: 16px 0;
+  line-height: 1;
 }

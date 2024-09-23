@@ -1,19 +1,31 @@
 "use client";
 
 import { Box, TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../lib/store";
 import styles from "./FilterInput.module.scss";
 import { insertValue } from "./InsertValueSlice";
 
-export default function FilterInput({ searchTerm }: { searchTerm: string }) {
+interface SearchInputProps {
+  onSearch: (value: string) => void;
+}
+export const FilterInput: React.FC<SearchInputProps> = ({ onSearch }) => {
   const dispatch = useDispatch();
+  const searchTerm = useSelector((state: RootState) => state.movieFilter.value);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    onSearch(value);
+    dispatch(insertValue(value));
+  };
 
   return (
     <Box className={styles.inputWrapper}>
       <TextField
         id="standard-basic"
         variant="standard"
-        onChange={(e) => dispatch(insertValue(e.target.value))}
+        onChange={handleInputChange}
         className={styles.filterItem}
         InputProps={{
           className: styles.filterInput,
@@ -28,4 +40,6 @@ export default function FilterInput({ searchTerm }: { searchTerm: string }) {
       />
     </Box>
   );
-}
+};
+
+export default FilterInput;

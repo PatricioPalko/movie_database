@@ -4,6 +4,15 @@
   padding-top: 100px;
   .tpl {
     padding: 80px 0;
+    min-height: 100%;
+    .noResults {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: inherit;
+      margin: 0 auto;
+    }
     .wrapper {
       display: flex;
       align-items: flex-start;

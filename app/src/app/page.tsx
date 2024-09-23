@@ -1,13 +1,12 @@
 "use client";
 import { Box, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useQuery } from "react-query";
 import bg from "../../public/assets/bg.jpg";
 import FilterInput from "./components/FilterInput";
 import MoviesList from "./components/MoviesList";
 import "./globals.scss";
 import { fetchAllMovies } from "./helpers/fetch-data";
-import { RootState } from "./lib/store";
 import styles from "./page.module.scss";
 
 interface Movie {
@@ -17,32 +16,30 @@ interface Movie {
   Year: string;
 }
 
-export default function Home() {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [movies, setMovies] = useState<Movie[]>([]);
+const fetchAllMoviesByName = async (movieState: string) => {
+  const response = await fetchAllMovies(movieState);
+  const data = await response.json();
+  return data.Search;
+};
 
-  const movieState = useSelector((state: RootState) => state.movieFilter.value);
+export default function Home() {
+  const [movieState, setMovieState] = useState<string>("");
 
   useEffect(() => {
-    const fetchMoviesByName = async () => {
-      setLoading(true);
-      try {
-        const response = await fetchAllMovies(movieState);
-        const data = await response.json();
-        if (data.Search) {
-          setMovies(data.Search);
-        } else {
-          setMovies([]);
-        }
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    fetchAllMoviesByName("");
+  }, []);
 
-    fetchMoviesByName();
-  }, [movieState]);
+  const {
+    data: movies,
+    isLoading,
+    error,
+  } = useQuery(["movies", movieState], () => fetchAllMoviesByName(movieState), {
+    enabled: !!movieState,
+  });
+
+  const handleSearch = (value: string) => {
+    setMovieState(value);
+  };
 
   return (
     <div className={styles.page}>
@@ -59,8 +56,13 @@ export default function Home() {
             <Typography component={"span"}>
               Simple movie database by CODERAMA
             </Typography>
-            <FilterInput searchTerm={movieState} />
-            <MoviesList movies={movies} loading={loading} isFavorites={false} />
+            <FilterInput onSearch={handleSearch} />
+            <MoviesList
+              movies={movies}
+              loading={isLoading}
+              isFavorites={false}
+              error={error}
+            />
           </Box>
         </Container>
       </main>
