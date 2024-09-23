@@ -5,8 +5,8 @@ if (!apiKey) {
   throw new Error("Missing OMDB_API_KEY");
 }
 
-export const fetchAllMovies = async (searchTerm: string) => {
-  const response = await fetch(`${apiEndpoint}/?s=${searchTerm}&apikey=${apiKey}`);
+export const fetchAllMovies = async (searchTerm: string, page: number) => {
+  const response = await fetch(`${apiEndpoint}/?s=${searchTerm}&apikey=${apiKey}&page=${page}`);
   if(!response.ok) { 
     throw new Error("Failed to fetch data");
   }

@@ -11,12 +11,12 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-end;
-        flex-basis: calc(100% / 4 - 20px);
+        flex-basis: calc(100% / 5 - 20px);
         margin: 0 10px 40px;
         overflow: hidden;
         height: 450px;
         padding: 0;
-        min-width: 300px;
+        min-width: 200px;
         .movieLink {
           height: inherit;
           width: 100%;
@@ -60,6 +60,7 @@
               white-space: nowrap;
               color: $font-color;
               font-size: 1.5em;
+              position: relative;
             }
           }
           .gradient {
@@ -88,6 +89,9 @@
                 rgba(34, 40, 49, 1) 115%
               );
             }
+            .infoWrapper .title {
+              animation: moving 5s infinite;
+            }
           }
         }
       }
@@ -97,4 +101,13 @@
 
 .noResults {
   line-height: 1;
+}
+
+@keyframes moving {
+  from {
+    right: 0px;
+  }
+  to {
+    right: 200px;
+  }
 }
