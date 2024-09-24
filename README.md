@@ -1,6 +1,6 @@
 # MOVIE DATABASE
 
-Movie database project created by Patrik Palko.
+Movie database project created by Patrik Palko. Check it out - [https://movie-database-delta.vercel.app/](https://movie-database-delta.vercel.app/)
 
 ![Home](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/mockup_movie3.png)
 ![Detail](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/mockup_movie.png)
