@@ -4,10 +4,11 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useEffect, useState } from "react";
 import { useInfiniteQuery } from "react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import bg from "../../public/assets/bg.jpg";
 import { Page } from "../../types/Types";
 import FilterInput from "./components/FilterInput";
+import { insertValue } from "./components/InsertValueSlice";
 import MoviesList from "./components/MoviesList";
 import "./globals.scss";
 import { fetchAllMovies } from "./helpers/fetch-data";
@@ -41,6 +42,7 @@ export default function Home() {
   const searchTerm = useSelector((state: RootState) => state.movieFilter.value);
   const [movieState, setMovieState] = useState<string>(searchTerm);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const dispatch = useDispatch();
 
   const {
     data: moviesData,
@@ -61,6 +63,7 @@ export default function Home() {
   }, [movieState]);
 
   const handleSearch = (value: string) => {
+    localStorage.setItem("searchTerm", movieState);
     setMovieState(value);
     setCurrentPage(1);
   };
@@ -74,9 +77,17 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (searchTerm) {
+    const savedSearchTerm = localStorage.getItem("searchTerm");
+    if (searchTerm !== savedSearchTerm) {
+      dispatch(insertValue(searchTerm));
+      setCurrentPage(1);
+      localStorage.setItem("currentPage", "1");
+    } else {
+      dispatch(insertValue(searchTerm));
+
       const savedPageNumber = localStorage.getItem("currentPage");
-      setCurrentPage(Number(savedPageNumber) || 1);
+      setCurrentPage(savedPageNumber ? parseInt(savedPageNumber) : 1);
+      localStorage.setItem("currentPage", String(savedPageNumber));
     }
   }, [searchTerm]);
 

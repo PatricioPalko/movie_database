@@ -1,20 +1,31 @@
 "use client";
-import { Box, TextField } from "@mui/material";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Box, Button, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { SearchInputProps } from "../../../types/Types";
-import { RootState } from "../lib/store";
 import styles from "./FilterInput.module.scss";
 import { insertValue } from "./InsertValueSlice";
 
 export const FilterInput: React.FC<SearchInputProps> = ({ onSearch }) => {
   const dispatch = useDispatch();
-  const searchTerm = useSelector((state: RootState) => state.movieFilter.value);
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  useEffect(() => {
+    const storedValue = localStorage.getItem("searchTerm");
+    if (storedValue) {
+      setSearchValue(storedValue);
+    }
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    onSearch(value);
-    dispatch(insertValue(value));
+    setSearchValue(value);
+    localStorage.setItem("searchTerm", value);
+  };
+
+  const handleClick = () => {
+    dispatch(insertValue(searchValue));
+    onSearch(searchValue);
   };
 
   return (
@@ -31,10 +42,13 @@ export const FilterInput: React.FC<SearchInputProps> = ({ onSearch }) => {
             root: styles.root,
           },
         }}
-        placeholder="Search..."
+        placeholder="Type something..."
+        value={searchValue}
         autoFocus
-        value={searchTerm}
       />
+      <Button onClick={handleClick} className={styles.button}>
+        Search
+      </Button>
     </Box>
   );
 };

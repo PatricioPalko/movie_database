@@ -1,6 +1,9 @@
 @import "../Variables.scss";
 
 .inputWrapper {
+  display: flex;
+  align-items: center;
+
   .filterItem {
     margin: 32px 0;
     background-color: $secondary-color;
@@ -20,5 +23,17 @@
   }
   label {
     color: $main-color;
+  }
+  .button {
+    display: flex;
+    background-color: $main-color;
+    color: $font-color;
+    border: 2px solid $secondary-color;
+    padding: 8px 12px;
+    margin: 0 0 0 16px;
+    letter-spacing: 2px;
+    &:hover {
+      border-color: $third-color;
+    }
   }
 }
