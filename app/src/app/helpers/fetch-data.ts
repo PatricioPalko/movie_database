@@ -1,4 +1,4 @@
-const apiEndpoint = "http://www.omdbapi.com/";
+const apiEndpoint = "https://www.omdbapi.com/";
 const apiKey = process.env.NEXT_PUBLIC_OMDB_API_KEY;
 
 if (!apiKey) {
