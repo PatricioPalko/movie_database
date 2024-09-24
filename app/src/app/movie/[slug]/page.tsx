@@ -2,7 +2,7 @@
 import { fetchSingleMovie } from "@/app/helpers/fetch-data";
 import { Box, Button, Container, Grid2, Typography } from "@mui/material";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
-import Image from "next/Image";
+import Image from "next/image";
 import { useState } from "react";
 import { FaAward } from "react-icons/fa";
 import {
@@ -179,7 +179,7 @@ export default function MovieDetailPage({ params }: BlogPageProps) {
                     {movie.Title}
                   </Typography>
                   <Box className={styles.genres}>
-                    {genres?.map((genre: any, id: number) => (
+                    {genres?.map((genre: string, id: number) => (
                       <Typography
                         component={"span"}
                         className={styles.genre}

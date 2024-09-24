@@ -20,7 +20,7 @@ const MoviesList = ({
   movies: Movie[];
   loading: boolean;
   isFavorites: boolean;
-  error: any;
+  error?: unknown;
 }) => {
   return (
     <>

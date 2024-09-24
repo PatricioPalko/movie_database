@@ -110,7 +110,7 @@ export default function Home() {
       const savedPageNumber = localStorage.getItem("currentPage");
       setCurrentPage(Number(savedPageNumber) || 1);
     }
-  }, []);
+  }, [searchTerm]);
 
   const movies = moviesData?.pages.flatMap((page) => page.movies) || [];
 
