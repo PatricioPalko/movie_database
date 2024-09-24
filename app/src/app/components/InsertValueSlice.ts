@@ -1,11 +1,8 @@
 "use client";
-
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+import { ValueState } from "../../../types/Types";
 
-export interface ValueState {
-  value: string;
-}
 const initialState: ValueState = {
   value: "",
 };

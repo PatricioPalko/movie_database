@@ -6,45 +6,13 @@ import { useEffect, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { useSelector } from "react-redux";
 import bg from "../../public/assets/bg.jpg";
+import { Page } from "../../types/Types";
 import FilterInput from "./components/FilterInput";
 import MoviesList from "./components/MoviesList";
 import "./globals.scss";
 import { fetchAllMovies } from "./helpers/fetch-data";
 import { RootState } from "./lib/store";
 import styles from "./page.module.scss";
-
-export interface Rating {
-  Source: string;
-  Value: string;
-}
-
-interface Movie {
-  Title: string;
-  imdbID: string;
-  Poster: string;
-  Year: string;
-  Plot: string;
-  Genre: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Country: string;
-  Awards: string;
-  Ratings: Rating[];
-  Metascore: string;
-  imdbRating: string;
-  imdbVotes: string;
-  Type: string;
-  Runtime: string;
-  totalSeasons?: string;
-  Rated: string;
-}
-
-interface Page {
-  totalPages: number;
-  nextPage: number | null;
-  movies: Movie[];
-}
 
 const fetchMoviesByPage = async (pageParam: number, movieState: string) => {
   if (!movieState) {

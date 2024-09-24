@@ -2,37 +2,10 @@
 import { Box, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import bg from "../../../public/assets/bg.jpg";
+import { Movie } from "../../../types/Types";
 import MoviesList from "../components/MoviesList";
 import "../globals.scss";
 import styles from "../page.module.scss";
-
-export interface Rating {
-  Source: string;
-  Value: string;
-}
-
-interface Movie {
-  Title: string;
-  imdbID: string;
-  Poster: string;
-  Year: string;
-  Plot: string;
-  Genre: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Country: string;
-  Awards: string;
-  Ratings: Rating[];
-  Metascore: string;
-  imdbRating: string;
-  imdbVotes: string;
-  Type: string;
-  Runtime: string;
-  totalSeasons?: string;
-  Rated: string;
-}
-
 export default function FavoriteMoviesPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);

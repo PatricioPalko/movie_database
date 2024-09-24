@@ -1,15 +1,12 @@
 "use client";
-
 import { Box, TextField } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { SearchInputProps } from "../../../types/Types";
 import { RootState } from "../lib/store";
 import styles from "./FilterInput.module.scss";
 import { insertValue } from "./InsertValueSlice";
 
-interface SearchInputProps {
-  onSearch: (value: string) => void;
-}
 export const FilterInput: React.FC<SearchInputProps> = ({ onSearch }) => {
   const dispatch = useDispatch();
   const searchTerm = useSelector((state: RootState) => state.movieFilter.value);

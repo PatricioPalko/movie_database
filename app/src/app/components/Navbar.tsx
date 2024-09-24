@@ -2,17 +2,12 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import MenuItem from "@mui/material/MenuItem";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IMenuItem } from "../../../types/Types";
 import styles from "./Navbar.module.scss";
 
-interface MenuItem {
-  label: string;
-  url: string;
-}
-
-const navbar: MenuItem[] = [
+const navbar: IMenuItem[] = [
   { label: "Home", url: "/" },
   { label: "Favorites", url: "/favorites" },
 ];
@@ -27,7 +22,7 @@ const Navbar = () => {
           <Box className={styles.navbarCollapse}>
             <Box className={styles.navbarNav}>
               {navbar &&
-                navbar.map((page: MenuItem, id: number) => (
+                navbar.map((page: IMenuItem, id: number) => (
                   <Link
                     key={id}
                     href={page.url}

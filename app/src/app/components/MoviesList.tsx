@@ -1,15 +1,9 @@
 import { Box, Container, List, ListItem, Typography } from "@mui/material";
 import Link from "next/link";
 import { MdOutlineImageNotSupported, MdOutlineStar } from "react-icons/md";
+import { Movie } from "../../../types/Types";
 import "../globals.scss";
 import styles from "./MoviesList.module.scss";
-
-interface Movie {
-  Title: string;
-  imdbID: string;
-  Poster: string;
-  Year: string;
-}
 
 const MoviesList = ({
   movies,

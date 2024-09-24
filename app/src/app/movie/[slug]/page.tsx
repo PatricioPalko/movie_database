@@ -14,6 +14,12 @@ import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import detailBg from "../../../../public/assets/detailBg.jpeg";
 import {
+  FilteredMovieData,
+  Movie,
+  MovieDetailPageProps,
+  Rating,
+} from "../../../../types/Types";
+import {
   addToFavorites,
   removeFromFavorites,
 } from "../../components/LikeSlice";
@@ -21,45 +27,6 @@ import "../../globals.scss";
 import { RootState } from "../../lib/store";
 import pageStyles from "../../page.module.scss";
 import styles from "./page.module.scss";
-
-export interface Rating {
-  Source: string;
-  Value: string;
-}
-
-interface BlogPageProps {
-  params: { slug: string };
-}
-interface Movie {
-  Title: string;
-  imdbID: string;
-  Poster: string;
-  Year: string;
-  Plot: string;
-  Genre: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Country: string;
-  Awards: string;
-  Ratings: Rating[];
-  Metascore: string;
-  imdbRating: string;
-  imdbVotes: string;
-  Type: string;
-  Runtime: string;
-  totalSeasons?: string;
-  Rated: string;
-}
-
-export interface FilteredMovieData {
-  Released: string;
-  Language: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Country: string;
-}
 
 const extractRating = (input: string): string | null => {
   const match = input.match(/^(\d+(\.\d+)?)/);
@@ -72,7 +39,7 @@ const fetchSingleMovieDetail = async (movieState: string) => {
   return data;
 };
 
-export default function MovieDetailPage({ params }: BlogPageProps) {
+export default function MovieDetailPage({ params }: MovieDetailPageProps) {
   const { slug } = params;
   const dispatch = useDispatch();
   const [filteredSingleMovieData, setFilteredSingleMovieData] =
