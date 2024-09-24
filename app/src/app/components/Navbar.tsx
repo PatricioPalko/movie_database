@@ -3,8 +3,8 @@ import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
-import Link from "next/Link";
-import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.scss";
 
 interface MenuItem {
@@ -12,22 +12,13 @@ interface MenuItem {
   url: string;
 }
 
-interface NavigationProps {
-  navbar: MenuItem[];
-}
-
 const navbar: MenuItem[] = [
   { label: "Home", url: "/" },
-  { label: "Detail", url: "/detail" },
   { label: "Favorites", url: "/favorites" },
 ];
 
 const Navbar = () => {
-  const [activeItem, setActiveItem] = useState("Domov");
-
-  const handleItemClick = (itemName: string) => {
-    setActiveItem(itemName);
-  };
+  const pathname = usePathname();
 
   return (
     <>
@@ -38,12 +29,11 @@ const Navbar = () => {
               {navbar &&
                 navbar.map((page: MenuItem, id: number) => (
                   <Link
-                    className={`${styles.navItem} ${
-                      activeItem === page.label ? styles.active : ""
-                    } `}
-                    href={`${page.url === "domov" ? "/" : `${page.url}`}`}
                     key={id}
-                    onClick={() => handleItemClick(page.label)}
+                    href={page.url}
+                    className={`${styles.navItem} ${
+                      pathname === page.url ? styles.active : ""
+                    } `}
                   >
                     <Typography component="span">{page.label}</Typography>
                   </Link>

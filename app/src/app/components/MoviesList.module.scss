@@ -6,6 +6,7 @@
       display: flex;
       align-items: flex-start;
       flex-wrap: wrap;
+      padding: 64px 0;
       .movieItem {
         display: flex;
         flex-direction: column;
@@ -57,7 +58,6 @@
             .title {
               line-height: 1.1;
               font-weight: 500;
-              white-space: nowrap;
               color: $font-color;
               font-size: 1.5em;
               position: relative;
@@ -89,9 +89,6 @@
                 rgba(34, 40, 49, 1) 115%
               );
             }
-            .infoWrapper .title {
-              animation: moving 5s infinite;
-            }
           }
         }
       }
@@ -101,13 +98,4 @@
 
 .noResults {
   line-height: 1;
-}
-
-@keyframes moving {
-  from {
-    right: 0px;
-  }
-  to {
-    right: 200px;
-  }
 }

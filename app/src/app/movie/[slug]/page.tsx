@@ -12,6 +12,7 @@ import {
 } from "react-icons/md";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
+import detailBg from "../../../../public/assets/detailBg.jpeg";
 import {
   addToFavorites,
   removeFromFavorites,
@@ -120,6 +121,10 @@ export default function MovieDetailPage({ params }: BlogPageProps) {
   return (
     <div className={pageStyles.page}>
       <main className={pageStyles.main}>
+        <div
+          style={{ backgroundImage: `url(${detailBg.src})` }}
+          className={pageStyles.bg}
+        ></div>
         <Container maxWidth={"lg"} className={styles.movieDetail}>
           <Box className={styles.tpl}>
             {isLoading ? (

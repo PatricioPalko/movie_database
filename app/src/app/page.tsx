@@ -4,11 +4,13 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useEffect, useState } from "react";
 import { useInfiniteQuery } from "react-query";
+import { useSelector } from "react-redux";
 import bg from "../../public/assets/bg.jpg";
 import FilterInput from "./components/FilterInput";
 import MoviesList from "./components/MoviesList";
 import "./globals.scss";
 import { fetchAllMovies } from "./helpers/fetch-data";
+import { RootState } from "./lib/store";
 import styles from "./page.module.scss";
 
 export interface Rating {
@@ -68,9 +70,8 @@ const fetchMoviesByPage = async (pageParam: number, movieState: string) => {
 };
 
 export default function Home() {
-  const [movieState, setMovieState] = useState<string>(() => {
-    return localStorage.getItem("searchTerm") || "";
-  });
+  const searchTerm = useSelector((state: RootState) => state.movieFilter.value);
+  const [movieState, setMovieState] = useState<string>(searchTerm);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const {
@@ -105,8 +106,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const savedPageNumber = localStorage.getItem("currentPage");
-    setCurrentPage(Number(savedPageNumber) || 1);
+    if (searchTerm) {
+      const savedPageNumber = localStorage.getItem("currentPage");
+      setCurrentPage(Number(savedPageNumber) || 1);
+    }
   }, []);
 
   const movies = moviesData?.pages.flatMap((page) => page.movies) || [];
