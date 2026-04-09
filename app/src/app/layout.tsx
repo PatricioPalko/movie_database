@@ -1,8 +1,8 @@
-"use client";
+import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { QueryClient, QueryClientProvider } from "react-query";
 import Navbar from "./components/Navbar";
 import "./globals.scss";
+import ReactQueryProvider from "./ReactQueryProvider";
 import StoreProvider from "./StoreProvider";
 import ThemeClient from "./ThemeClient";
 
@@ -11,7 +11,10 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const queryClient = new QueryClient();
+export const metadata: Metadata = {
+  title: "Movie Database",
+  description: "Browse movies",
+};
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -20,16 +23,16 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <StoreProvider>
-        <ThemeClient>
-          <QueryClientProvider client={queryClient}>
-            <body className={`${poppins.className} `}>
+      <body className={poppins.className}>
+        <StoreProvider>
+          <ThemeClient>
+            <ReactQueryProvider>
               <Navbar />
               {children}
-            </body>
-          </QueryClientProvider>
-        </ThemeClient>
-      </StoreProvider>
+            </ReactQueryProvider>
+          </ThemeClient>
+        </StoreProvider>
+      </body>
     </html>
   );
 }

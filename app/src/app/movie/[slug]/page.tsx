@@ -1,24 +1,19 @@
 "use client";
 import { fetchSingleMovie } from "@/app/helpers/fetch-data";
-import { Box, Button, Container, Grid2, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import { useState } from "react";
+import { use, useState } from "react";
 import { FaAward } from "react-icons/fa";
 import {
   MdOutlineImageNotSupported,
   MdOutlineStar,
   MdOutlineStarOutline,
 } from "react-icons/md";
-import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import detailBg from "../../../../public/assets/detailBg.jpeg";
-import {
-  FilteredMovieData,
-  Movie,
-  MovieDetailPageProps,
-  Rating,
-} from "../../../../types/Types";
+import { FilteredMovieData, Movie, Rating } from "../../../../types/Types";
 import {
   addToFavorites,
   removeFromFavorites,
@@ -39,38 +34,30 @@ const fetchSingleMovieDetail = async (movieState: string) => {
   return data;
 };
 
-export default function MovieDetailPage({ params }: MovieDetailPageProps) {
-  const { slug } = params;
+export default function MovieDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = use(params);
   const dispatch = useDispatch();
   const [filteredSingleMovieData, setFilteredSingleMovieData] =
     useState<FilteredMovieData | null>(null);
 
   const favoriteMovies = useSelector(
-    (state: RootState) => state.like.favoriteMoviesList
+    (state: RootState) => state.like.favoriteMoviesList,
   );
   const isFavorite = favoriteMovies.some(
-    (favMovie: Movie) => favMovie.imdbID === slug
+    (favMovie: Movie) => favMovie.imdbID === slug,
   );
 
   const {
     data: movie,
     isLoading,
     error,
-  } = useQuery(["movie", slug], () => fetchSingleMovieDetail(slug), {
-    enabled: !!slug,
-    onSuccess: (data) => {
-      setFilteredSingleMovieData({
-        Released: data.Released,
-        Language: data.Language,
-        Director: data.Director,
-        Writer: data.Writer,
-        Actors: data.Actors,
-        Country: data.Country,
-      });
-    },
-    onError: (error) => {
-      console.log(error);
-    },
+  } = useQuery({
+    queryKey: ["movie", slug],
+    queryFn: () => fetchSingleMovieDetail(slug),
   });
 
   const genres = movie?.Genre?.split(", ");
@@ -101,8 +88,8 @@ export default function MovieDetailPage({ params }: MovieDetailPageProps) {
             ) : error ? (
               <Box className={styles.noResults}>Error</Box>
             ) : movie ? (
-              <Grid2 container spacing={8} className={styles.wrapper}>
-                <Grid2 className={styles.wrapperItem}>
+              <Grid container spacing={8} className={styles.wrapper}>
+                <Grid className={styles.wrapperItem}>
                   {movie.Poster !== "N/A" ? (
                     <Image
                       src={movie.Poster}
@@ -117,8 +104,8 @@ export default function MovieDetailPage({ params }: MovieDetailPageProps) {
                       <MdOutlineImageNotSupported />
                     </Box>
                   )}
-                </Grid2>
-                <Grid2 className={styles.infoWrapper}>
+                </Grid>
+                <Grid className={styles.infoWrapper}>
                   <Typography
                     variant="h3"
                     component={"h3"}
@@ -217,7 +204,7 @@ export default function MovieDetailPage({ params }: MovieDetailPageProps) {
                             >
                               {rating.Value.replace(
                                 extractRating(rating.Value)!,
-                                ""
+                                "",
                               )}
                             </Typography>
                           </Box>
@@ -257,11 +244,11 @@ export default function MovieDetailPage({ params }: MovieDetailPageProps) {
                           <Box className={styles.title}>{key}</Box>
                           <Box className={styles.value}>{value}</Box>
                         </Box>
-                      )
+                      ),
                     )}
                   </Box>
-                </Grid2>
-              </Grid2>
+                </Grid>
+              </Grid>
             ) : null}
           </Box>
         </Container>

@@ -35,16 +35,14 @@ export const FilterInput: React.FC<SearchInputProps> = ({ onSearch }) => {
         variant="standard"
         onChange={handleInputChange}
         className={styles.filterItem}
-        InputProps={{
-          className: styles.filterInput,
-          classes: {
-            focused: styles.focused,
-            root: styles.root,
-          },
-        }}
         placeholder="Type something..."
         value={searchValue}
         autoFocus
+        slotProps={{
+          input: {
+            className: styles.filterInput,
+          },
+        }}
       />
       <Button onClick={handleClick} className={styles.button}>
         Search

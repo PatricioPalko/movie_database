@@ -2,8 +2,8 @@
 import { Box, Container, PaginationItem, Typography } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { useInfiniteQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import bg from "../../public/assets/bg.jpg";
 import { Page } from "../../types/Types";
@@ -48,15 +48,13 @@ export default function Home() {
     data: moviesData,
     isLoading,
     error,
-  } = useInfiniteQuery<Page>(
-    ["movies", movieState, currentPage],
-    ({ queryKey }) =>
+  } = useInfiniteQuery<Page>({
+    queryKey: ["movies", movieState, currentPage],
+    queryFn: ({ queryKey }) =>
       fetchMoviesByPage(queryKey[2] as number, queryKey[1] as string),
-    {
-      keepPreviousData: true,
-      getNextPageParam: (lastPage) => lastPage.nextPage,
-    }
-  );
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+    initialPageParam: 1,
+  });
 
   useEffect(() => {
     localStorage.setItem("searchTerm", movieState);
@@ -70,7 +68,7 @@ export default function Home() {
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
-    value: number
+    value: number,
   ) => {
     setCurrentPage(value);
     localStorage.setItem("currentPage", value.toString());
@@ -105,9 +103,7 @@ export default function Home() {
             <Typography variant="h1" component={"h1"} className={styles.title}>
               Movie database
             </Typography>
-            <Typography component={"span"}>
-              Simple movie database by CODERAMA
-            </Typography>
+            <Typography component={"span"}>Simple movie database</Typography>
             <FilterInput onSearch={handleSearch} />
             <MoviesList
               movies={movies}
