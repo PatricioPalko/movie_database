@@ -1,5 +1,5 @@
-import styles from "@/movie/[slug]/page.module.scss";
-import { Movie } from "@/types/Types";
+import styles from "@/app/movie/[slug]/page.module.scss";
+import { Movie } from "@/app/types/Types";
 import { Box, Typography } from "@mui/material";
 
 export default function MovieMeta({ movie }: { movie: Movie }) {

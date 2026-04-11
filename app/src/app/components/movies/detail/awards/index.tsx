@@ -1,4 +1,4 @@
-import styles from "@/movie/[slug]/page.module.scss";
+import styles from "@/app/movie/[slug]/page.module.scss";
 import { Box, Typography } from "@mui/material";
 import { FaAward } from "react-icons/fa";
 

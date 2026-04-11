@@ -1,28 +1,14 @@
-import styles from "@/components/MovieCard.module.scss";
-import { MovieCardProps } from "@/types/Types";
+import styles from "@/app/components/MovieCard.module.scss";
+import MovieDetailPoster from "@/app/components/movies/detail/poster";
+import { MovieCardProps } from "@/app/types/Types";
 import { Box, ListItem, Typography } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
-import { MdOutlineImageNotSupported, MdOutlineStar } from "react-icons/md";
+import { MdOutlineStar } from "react-icons/md";
 
 export const MovieCard = ({ movie, isFavorites }: MovieCardProps) => (
   <ListItem className={styles.movieItem}>
     <Link href={`/movie/${movie.imdbID}`} className={styles.movieLink}>
-      {movie.Poster !== "N/A" ? (
-        <Image
-          src={movie.Poster}
-          alt="background"
-          fill
-          priority
-          style={{ objectFit: "cover" }}
-          sizes="(min-width: 808px) 50vw, 100vw"
-          className={styles.backgroundImage}
-        />
-      ) : (
-        <Box className={styles.noImage}>
-          <MdOutlineImageNotSupported />
-        </Box>
-      )}
+      <MovieDetailPoster poster={movie.Poster} title={movie.Title} />
       <Box className={styles.gradient} />
       {isFavorites && (
         <MdOutlineStar className={`${styles.icon} ${styles.liked}`} />

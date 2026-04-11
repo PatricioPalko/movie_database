@@ -9,12 +9,12 @@
   min-height: 100vh;
   position: relative;
   .container {
+    padding-top: 100px;
     .tpl {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding-top: 100px;
     }
   }
 }
@@ -45,6 +45,8 @@
     font-size: 20px;
     padding: 8px;
     margin: 4px;
+    position: relative;
+    overflow: visible;
     &:hover {
       color: $third-color;
     }

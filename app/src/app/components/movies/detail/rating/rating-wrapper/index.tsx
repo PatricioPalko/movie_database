@@ -1,8 +1,8 @@
-import GaugeChart from "@/components/movies/detail/rating/gauge";
-import RatingItem from "@/components/movies/detail/rating/rating-item";
-import "@/globals.scss";
-import styles from "@/movie/[slug]/page.module.scss";
-import { Rating } from "@/types/Types";
+import GaugeChart from "@/app/components/movies/detail/rating/gauge";
+import RatingItem from "@/app/components/movies/detail/rating/rating-item";
+import "@/app/globals.scss";
+import styles from "@/app/movie/[slug]/page.module.scss";
+import { Rating } from "@/app/types/Types";
 import { Box } from "@mui/material";
 
 export default function MovieRatingWrapper({

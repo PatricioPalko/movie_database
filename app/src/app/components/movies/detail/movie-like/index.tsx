@@ -1,29 +1,24 @@
 "use client";
-import "@/globals.scss";
-import { addToFavorites, removeFromFavorites } from "@/helpers/LikeSlice";
-import { RootState } from "@/lib/store";
-import styles from "@/movie/[slug]/page.module.scss";
-import { Movie } from "@/types/Types";
+import "@/app/globals.scss";
+import styles from "@/app/movie/[slug]/page.module.scss";
+import { Movie } from "@/app/types/Types";
+import { useStore } from "@/store/useStore";
 import { Box, Button, Typography } from "@mui/material";
 import { MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function MovieLike({ movie }: { movie: Movie | undefined }) {
-  const dispatch = useDispatch();
+  const { favorites, addFavorite, removeFavorite } = useStore();
 
-  const favoriteMovies = useSelector(
-    (state: RootState) => state.like.favoriteMoviesList,
-  );
-  const isFavorite = favoriteMovies.some(
-    (favMovie: Movie) => favMovie.imdbID === movie?.imdbID,
+  const isFavorite = favorites.some(
+    (favoriteMovie) => favoriteMovie.imdbID === movie?.imdbID,
   );
 
   const handleLikeClick = () => {
     if (movie) {
       if (isFavorite) {
-        dispatch(removeFromFavorites(movie.imdbID));
+        removeFavorite(movie.imdbID);
       } else {
-        dispatch(addToFavorites(movie));
+        addFavorite(movie);
       }
     }
   };

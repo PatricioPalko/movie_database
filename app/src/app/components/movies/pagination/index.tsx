@@ -1,5 +1,5 @@
-import styles from "@/page.module.scss";
-import { PaginationProps } from "@/types/Types";
+import styles from "@/app/page.module.scss";
+import { PaginationProps } from "@/app/types/Types";
 import { Pagination, PaginationItem, Stack } from "@mui/material";
 
 export default function MoviesPagination({
@@ -15,6 +15,9 @@ export default function MoviesPagination({
         page={currentPage}
         onChange={onChange}
         shape="rounded"
+        siblingCount={1}
+        boundaryCount={1}
+        color="secondary"
         className={styles.pagination}
         renderItem={(item) => (
           <PaginationItem

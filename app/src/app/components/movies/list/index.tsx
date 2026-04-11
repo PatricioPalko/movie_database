@@ -1,5 +1,5 @@
-import styles from "@/components/MoviesList.module.scss";
-import { MoviesListProps } from "@/types/Types";
+import styles from "@/app/components/MoviesList.module.scss";
+import { MoviesListProps } from "@/app/types/Types";
 import { Box, Container, List } from "@mui/material";
 import MovieCard from "../card";
 

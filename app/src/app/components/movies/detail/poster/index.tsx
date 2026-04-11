@@ -1,6 +1,8 @@
-import styles from "@/movie/[slug]/page.module.scss";
+"use client";
+import styles from "@/app/movie/[slug]/page.module.scss";
 import { Box } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 import { MdOutlineImageNotSupported } from "react-icons/md";
 
 type Props = {
@@ -9,7 +11,9 @@ type Props = {
 };
 
 export default function MovieDetailPoster({ poster, title }: Props) {
-  if (!poster || poster === "N/A") {
+  const [hasError, setHasError] = useState(false);
+
+  if (!poster || poster === "N/A" || hasError) {
     return (
       <Box className={styles.noImage}>
         <MdOutlineImageNotSupported />
@@ -21,10 +25,12 @@ export default function MovieDetailPoster({ poster, title }: Props) {
     <Image
       src={poster}
       alt={title}
-      width={1000}
-      height={1000}
       className={styles.image}
       priority
+      fill
+      style={{ objectFit: "cover" }}
+      sizes="( max-width: 600px ) 100vw, 300px"
+      onError={() => setHasError(true)}
     />
   );
 }

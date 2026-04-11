@@ -25,19 +25,12 @@
         overflow: hidden;
         padding: 0;
         min-width: 300px;
+        position: relative;
+        height: 750px;
         .image {
           height: inherit;
           width: 100%;
           object-fit: cover;
-        }
-        .noImage {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          height: inherit;
-          margin: 0 auto;
-          font-size: 100px;
         }
       }
       .infoWrapper {
@@ -207,5 +200,18 @@
         }
       }
     }
+  }
+}
+
+.noImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: $main-color;
+  border-radius: 8px;
+  svg {
+    font-size: 50px;
+    color: $third-color;
   }
 }

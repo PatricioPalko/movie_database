@@ -16,15 +16,7 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    .noImage {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      height: inherit;
-      margin: 0 auto;
-      font-size: 100px;
-    }
+
     .icon.liked {
       position: absolute;
       top: 8px;
@@ -45,6 +37,7 @@
       bottom: 0;
       left: 0;
       z-index: 2;
+
       .year {
         color: $third-color;
         font-weight: 300;
@@ -56,6 +49,15 @@
         color: $font-color;
         font-size: 1.5em;
         position: relative;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-height: 3em;
+        line-height: 1.5em;
+        transition: max-height 0.3s ease;
+        z-index: 3;
+        &:hover {
+          max-height: 200px;
+        }
       }
     }
     .gradient {

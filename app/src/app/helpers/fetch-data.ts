@@ -15,10 +15,10 @@ export const getAllMovies = async (searchTerm: string, page: number) => {
   return response;
 };
 
-export const getSingleMovie = async (slug: string) => {
-  const response = await fetch(`${apiEndpoint}/?i=${slug}&apikey=${apiKey}`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch single movie data");
-  }
-  return response;
+export const getMovieDetail = async (slug: string) => {
+  const res = await fetch(`${apiEndpoint}?i=${slug}&apikey=${apiKey}`);
+
+  if (!res.ok) throw new Error("API error");
+
+  return res.json();
 };

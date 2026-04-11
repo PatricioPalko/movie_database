@@ -1,4 +1,4 @@
-import styles from "@/movie/[slug]/page.module.scss";
+import styles from "@/app/movie/[slug]/page.module.scss";
 import { Box } from "@mui/material";
 
 export default function MovieDetailsInfoItem({

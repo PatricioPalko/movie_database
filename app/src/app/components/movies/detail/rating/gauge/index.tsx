@@ -1,5 +1,5 @@
-import "@/globals.scss";
-import styles from "@/movie/[slug]/page.module.scss";
+import "@/app/globals.scss";
+import styles from "@/app/movie/[slug]/page.module.scss";
 import { Box, Typography } from "@mui/material";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 
