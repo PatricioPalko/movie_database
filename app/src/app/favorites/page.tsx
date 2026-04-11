@@ -1,11 +1,12 @@
 "use client";
 import { Box, Container, Typography } from "@mui/material";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import bg from "../../../public/assets/bg.jpg";
-import { Movie } from "../../../types/Types";
-import MoviesList from "../components/MoviesList";
+import MoviesList from "../components/movies/list";
 import "../globals.scss";
 import styles from "../page.module.scss";
+import { Movie } from "../types/Types";
+
 export default function FavoriteMoviesPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
@@ -33,10 +34,14 @@ export default function FavoriteMoviesPage() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Box
-          style={{ backgroundImage: `url(${bg.src})` }}
+        <Image
+          src="/assets/bg.jpg"
+          alt="background"
+          fill
+          priority
+          style={{ objectFit: "cover" }}
           className={styles.bg}
-        ></Box>
+        />
         <Container maxWidth={"xl"} className={styles.container}>
           <Box className={styles.tpl}>
             <Typography variant="h1" component={"h1"} className={styles.title}>

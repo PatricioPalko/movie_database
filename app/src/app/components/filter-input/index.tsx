@@ -2,9 +2,9 @@
 import { Box, Button, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { SearchInputProps } from "../../../types/Types";
-import styles from "./FilterInput.module.scss";
-import { insertValue } from "./InsertValueSlice";
+import { insertValue } from "../../helpers/InsertValueSlice";
+import { SearchInputProps } from "../../types/Types";
+import styles from "../FilterInput.module.scss";
 
 export const FilterInput: React.FC<SearchInputProps> = ({ onSearch }) => {
   const dispatch = useDispatch();

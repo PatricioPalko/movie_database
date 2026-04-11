@@ -62,3 +62,21 @@ export interface ValueState {
 export interface SearchInputProps {
   onSearch: (value: string) => void;
 }
+
+export interface MoviesListProps {
+  movies: Movie[];
+  loading: boolean;
+  isFavorites: boolean;
+  error?: unknown;
+}
+
+export interface PaginationProps {
+  totalPages: number;
+  currentPage: number;
+  onChange: (event: React.ChangeEvent<unknown>, value: number) => void;
+}
+
+export interface MovieCardProps {
+  movie: Movie;
+  isFavorites: boolean;
+}

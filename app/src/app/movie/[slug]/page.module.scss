@@ -49,9 +49,6 @@
           margin: 8px 0;
         }
         .likeBtn {
-          position: absolute;
-          top: -55px;
-          left: -20px;
           &:hover {
             background-color: transparent;
           }
@@ -65,9 +62,6 @@
           }
         }
         .likeText {
-          position: absolute;
-          top: -37px;
-          left: 50px;
           white-space: nowrap;
         }
         .title {
