@@ -23,7 +23,7 @@ export default function MoviesListWrapper() {
       <MoviesList
         movies={movies}
         loading={isLoading}
-        isFavorites={false}
+        isFavourites={false}
         error={error}
       />
       {movies.length > 0 && (

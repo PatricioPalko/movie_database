@@ -7,8 +7,8 @@ import MoviesList from "../components/movies/list";
 import "../globals.scss";
 import styles from "../page.module.scss";
 
-export default function FavoriteMoviesPage() {
-  const { favorites } = useStore();
+export default function FavouriteMoviesPage() {
+  const { favourites } = useStore();
 
   return (
     <div className={styles.page}>
@@ -25,10 +25,14 @@ export default function FavoriteMoviesPage() {
         <Container maxWidth="xl" className={styles.container}>
           <Box className={styles.tpl}>
             <Typography variant="h1" className={styles.title}>
-              Favorite movies
+              Favourite movies
             </Typography>
 
-            <MoviesList movies={favorites} loading={false} isFavorites={true} />
+            <MoviesList
+              movies={favourites}
+              loading={false}
+              isFavourites={true}
+            />
           </Box>
         </Container>
       </main>

@@ -4,7 +4,7 @@ Movie database project created by Patrik Palko. Check it out - [https://movie-da
 
 ![Home](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/mockup_movie3.png)
 ![Detail](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/mockup_movie.png)
-![Favorites](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/mockup_movie2.png)
+![Favourites](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/mockup_movie2.png)
 
 ## Getting Started
 

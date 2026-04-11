@@ -7,18 +7,18 @@ import { Box, Button, Typography } from "@mui/material";
 import { MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
 
 export default function MovieLike({ movie }: { movie: Movie | undefined }) {
-  const { favorites, addFavorite, removeFavorite } = useStore();
+  const { favourites, addFavourite, removeFavourite } = useStore();
 
-  const isFavorite = favorites.some(
-    (favoriteMovie) => favoriteMovie.imdbID === movie?.imdbID,
+  const isFavourite = favourites.some(
+    (favouriteMovie) => favouriteMovie.imdbID === movie?.imdbID,
   );
 
   const handleLikeClick = () => {
     if (movie) {
-      if (isFavorite) {
-        removeFavorite(movie.imdbID);
+      if (isFavourite) {
+        removeFavourite(movie.imdbID);
       } else {
-        addFavorite(movie);
+        addFavourite(movie);
       }
     }
   };
@@ -26,7 +26,7 @@ export default function MovieLike({ movie }: { movie: Movie | undefined }) {
   return (
     <Box>
       <Button onClick={handleLikeClick} className={styles.likeBtn}>
-        {isFavorite === false ? (
+        {isFavourite === false ? (
           <MdOutlineStarOutline
             onClick={handleLikeClick}
             className={styles.icon}
@@ -39,7 +39,7 @@ export default function MovieLike({ movie }: { movie: Movie | undefined }) {
         )}
       </Button>
       <Typography component={"span"} className={styles.likeText}>
-        {isFavorite === false ? "Like it now" : "I love this!"}
+        {isFavourite === false ? "Like it now" : "I love this!"}
       </Typography>
     </Box>
   );

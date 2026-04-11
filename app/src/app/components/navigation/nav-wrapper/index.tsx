@@ -6,7 +6,7 @@ import NavItem from "../nav-item";
 
 const NAV_ITEMS: IMenuItem[] = [
   { label: "Home", url: "/" },
-  { label: "Favorites", url: "/favorites" },
+  { label: "Favourites", url: "/favourites" },
 ];
 
 const NavigationWrapper = () => {

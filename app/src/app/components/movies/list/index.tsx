@@ -10,7 +10,7 @@ const EmptyState = ({ message }: { message: string }) => (
 const MoviesList = ({
   movies,
   loading,
-  isFavorites,
+  isFavourites,
   error,
 }: MoviesListProps) => {
   if (loading) return <EmptyState message="Loading the list of movies" />;
@@ -26,7 +26,7 @@ const MoviesList = ({
             <MovieCard
               key={movie.imdbID}
               movie={movie}
-              isFavorites={isFavorites}
+              isFavourites={isFavourites}
             />
           ))}
         </List>

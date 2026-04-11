@@ -51,8 +51,8 @@ export interface IMenuItem {
   url: string;
 }
 
-export interface FavoritesState {
-  favoriteMoviesList: Movie[];
+export interface FavouritesState {
+  favouriteMoviesList: Movie[];
 }
 
 export interface ValueState {
@@ -66,7 +66,7 @@ export interface SearchInputProps {
 export interface MoviesListProps {
   movies: Movie[];
   loading: boolean;
-  isFavorites: boolean;
+  isFavourites: boolean;
   error?: unknown;
 }
 
@@ -78,5 +78,5 @@ export interface PaginationProps {
 
 export interface MovieCardProps {
   movie: Movie;
-  isFavorites: boolean;
+  isFavourites: boolean;
 }

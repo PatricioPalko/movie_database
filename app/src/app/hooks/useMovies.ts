@@ -1,9 +1,9 @@
 import { getAllMovies } from "@/app/helpers/fetch-data";
 import { useStore } from "@/store/useStore";
 import { useQuery } from "@tanstack/react-query";
+import type { ChangeEvent } from "react";
 import { useCallback } from "react";
 import type { Page } from "../types/Types";
-
 const fetchMoviesByPage = async (
   page: number,
   searchTerm: string,
@@ -26,7 +26,7 @@ export function useMovies() {
     queryKey: ["movies", searchValue, page],
     queryFn: () => fetchMoviesByPage(page, searchValue),
     enabled: !!searchValue,
-    placeholderData: (prev) => prev,
+    placeholderData: (prev: Page | undefined) => prev,
   });
 
   const handleSearch = useCallback(
@@ -38,7 +38,7 @@ export function useMovies() {
   );
 
   const handlePageChange = useCallback(
-    (_: any, value: number) => {
+    (_: ChangeEvent<unknown>, value: number) => {
       setPage(value);
     },
     [setPage],
