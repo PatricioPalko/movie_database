@@ -1,41 +1,47 @@
 "use client";
-import { useStore } from "@/store/useStore";
-import { Box, Button, TextField } from "@mui/material";
+
+import { saveSearchState } from "@/app/helpers/searchMemory";
+import { Box, TextField } from "@mui/material";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
-import { SearchInputProps } from "../../types/Types";
 import styles from "../FilterInput.module.scss";
 
-export const FilterInput: React.FC<SearchInputProps> = ({ onSearch }) => {
-  const { searchValue, setSearchValue } = useStore();
+export const FilterInput: React.FC = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const searchValue = searchParams.get("q") ?? "";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setSearchValue(value);
-  };
 
-  const handleClick = () => {
-    onSearch(searchValue);
+    const params = new URLSearchParams();
+
+    if (value) {
+      params.set("q", value);
+      params.set("page", "1");
+
+      saveSearchState(value, 1);
+    }
+
+    router.replace(`?${params.toString()}`);
   };
 
   return (
     <Box className={styles.inputWrapper}>
       <TextField
-        id="standard-basic"
         variant="standard"
         onChange={handleInputChange}
-        className={styles.filterItem}
-        placeholder="Type something..."
         value={searchValue}
+        placeholder="Type something..."
         autoFocus
+        className={styles.filterItem}
         slotProps={{
           input: {
             className: styles.filterInput,
           },
         }}
       />
-      <Button onClick={handleClick} className={styles.button}>
-        Search
-      </Button>
     </Box>
   );
 };

@@ -5,7 +5,7 @@ import { Pagination, PaginationItem, Stack } from "@mui/material";
 export default function MoviesPagination({
   totalPages,
   currentPage,
-  onChange,
+  handlePageChange,
 }: PaginationProps) {
   return (
     <Stack spacing={2}>
@@ -13,7 +13,7 @@ export default function MoviesPagination({
         count={totalPages}
         size="small"
         page={currentPage}
-        onChange={onChange}
+        onChange={handlePageChange}
         shape="rounded"
         siblingCount={1}
         boundaryCount={1}

@@ -73,7 +73,7 @@ export interface MoviesListProps {
 export interface PaginationProps {
   totalPages: number;
   currentPage: number;
-  onChange: (event: React.ChangeEvent<unknown>, value: number) => void;
+  handlePageChange: (event: React.ChangeEvent<unknown>, value: number) => void;
 }
 
 export interface MovieCardProps {

@@ -13,13 +13,12 @@ export default function MoviesListWrapper() {
     currentPage,
     isLoading,
     error,
-    handleSearch,
     handlePageChange,
   } = useMovies();
 
   return (
     <Box className={styles.tpl}>
-      <FilterInput onSearch={handleSearch} />
+      <FilterInput />
       <MoviesList
         movies={movies}
         loading={isLoading}
@@ -30,7 +29,7 @@ export default function MoviesListWrapper() {
         <MoviesPagination
           totalPages={totalPages}
           currentPage={currentPage}
-          onChange={handlePageChange}
+          handlePageChange={handlePageChange}
         />
       )}
     </Box>
