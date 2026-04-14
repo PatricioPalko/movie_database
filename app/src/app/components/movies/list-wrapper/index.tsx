@@ -1,8 +1,7 @@
 "use client";
-import styles from "@/app/page.module.scss";
+
 import { Box } from "@mui/material";
 import { useMovies } from "../../../hooks/useMovies";
-import FilterInput from "../../filter-input";
 import MoviesList from "../list";
 import MoviesPagination from "../pagination";
 
@@ -17,14 +16,9 @@ export default function MoviesListWrapper() {
   } = useMovies();
 
   return (
-    <Box className={styles.tpl}>
-      <FilterInput />
-      <MoviesList
-        movies={movies}
-        loading={isLoading}
-        isFavourites={false}
-        error={error}
-      />
+    <Box sx={{ px: 3, py: 4, maxWidth: 1400, mx: "auto" }}>
+      <MoviesList movies={movies} loading={isLoading} error={error} />
+
       {movies.length > 0 && (
         <MoviesPagination
           totalPages={totalPages}

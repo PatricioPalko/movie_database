@@ -1,7 +1,5 @@
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+import { Box, Container } from "@mui/material";
 import { IMenuItem } from "../../../types/Types";
-import styles from "../../Navbar.module.scss";
 import NavItem from "../nav-item";
 
 const NAV_ITEMS: IMenuItem[] = [
@@ -11,17 +9,40 @@ const NAV_ITEMS: IMenuItem[] = [
 
 const NavigationWrapper = () => {
   return (
-    <nav className={`${styles.main} ${styles.navbar} ${styles.navWrap}`}>
-      <Container className={styles.navWrapper} maxWidth="xl">
-        <Box className={styles.navbarCollapse}>
-          <Box className={styles.navbarNav}>
+    <Box
+      component="nav"
+      sx={{
+        width: "100%",
+        position: "sticky",
+        top: 0,
+        zIndex: 10,
+        backdropFilter: "blur(10px)",
+        backgroundColor: "rgba(0,0,0,0.4)",
+        borderBottom: "2px solid rgba(255,255,255,0.1)",
+      }}
+    >
+      <Container maxWidth="xl">
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2,
+            py: 4,
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              gap: 1,
+            }}
+          >
             {NAV_ITEMS.map((page: IMenuItem, id: number) => (
               <NavItem key={id} page={page} />
             ))}
           </Box>
         </Box>
       </Container>
-    </nav>
+    </Box>
   );
 };
 

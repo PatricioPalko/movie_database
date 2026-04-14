@@ -66,7 +66,6 @@ export interface SearchInputProps {
 export interface MoviesListProps {
   movies: Movie[];
   loading: boolean;
-  isFavourites: boolean;
   error?: unknown;
 }
 
@@ -78,5 +77,4 @@ export interface PaginationProps {
 
 export interface MovieCardProps {
   movie: Movie;
-  isFavourites: boolean;
 }

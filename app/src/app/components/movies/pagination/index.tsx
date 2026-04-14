@@ -1,4 +1,3 @@
-import styles from "@/app/page.module.scss";
 import { PaginationProps } from "@/app/types/Types";
 import { Pagination, PaginationItem, Stack } from "@mui/material";
 
@@ -8,25 +7,40 @@ export default function MoviesPagination({
   handlePageChange,
 }: PaginationProps) {
   return (
-    <Stack spacing={2}>
+    <Stack
+      spacing={2}
+      sx={{
+        my: 6,
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <Pagination
         count={totalPages}
-        size="small"
         page={currentPage}
         onChange={handlePageChange}
         shape="rounded"
         siblingCount={1}
-        boundaryCount={1}
-        color="secondary"
-        className={styles.pagination}
+        boundaryCount={2}
+        color="primary"
         renderItem={(item) => (
           <PaginationItem
             {...item}
-            className={styles.paginationItem}
             sx={{
+              color: "text.secondary",
+
               "&.Mui-selected": {
-                backgroundColor: "#74777d",
-                color: "#ffd369 !important",
+                backgroundColor: "#34D399",
+                color: "#0A0F1C",
+              },
+
+              "&:hover": {
+                border: "2px solid #34D399",
+                backgroundColor: "transparent",
+              },
+
+              "&.Mui-selected:hover": {
+                backgroundColor: "#34D399",
               },
             }}
           />

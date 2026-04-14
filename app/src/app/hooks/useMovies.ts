@@ -33,7 +33,6 @@ export function useMovies() {
   const { data, isLoading, error } = useQuery<Page>({
     queryKey: ["movies", searchValue, page],
     queryFn: () => fetchMoviesByPage(page, searchValue),
-    enabled: !!searchValue,
     placeholderData: (prev) => prev,
   });
 

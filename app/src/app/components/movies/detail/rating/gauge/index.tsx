@@ -1,5 +1,3 @@
-import "@/app/globals.scss";
-import styles from "@/app/movie/[slug]/page.module.scss";
 import { Box, Typography } from "@mui/material";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 
@@ -11,7 +9,14 @@ export default function GaugeChart({
   imdbVotes: number;
 }) {
   return (
-    <Box className={styles.gaugeWrapper}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 1,
+      }}
+    >
       <Gauge
         value={Number(imdbRating) * 10}
         startAngle={0}
@@ -20,20 +25,26 @@ export default function GaugeChart({
         outerRadius="100%"
         width={100}
         height={100}
-        sx={() => ({
+        sx={{
           [`& .${gaugeClasses.valueText}`]: {
             fontSize: 24,
           },
           [`& .${gaugeClasses.valueArc}`]: {
-            fill: "#ffd369",
+            fill: "#34D399",
           },
           [`& .${gaugeClasses.referenceArc}`]: {
-            fill: "#393e46",
+            fill: "rgba(255, 255, 255, 0.1)",
           },
-        })}
-        className={styles.gauge}
+        }}
       />
-      <Typography component={"span"} className={styles.votes}>
+
+      <Typography
+        component="span"
+        sx={{
+          opacity: 0.7,
+          fontSize: 12,
+        }}
+      >
         {`${imdbVotes} votes`}
       </Typography>
     </Box>

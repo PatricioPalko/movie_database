@@ -1,4 +1,5 @@
 "use client";
+
 import MovieAwards from "@/app/components/movies/detail/awards";
 import MovieDetailsInfoWrapper from "@/app/components/movies/detail/details-info/detail-info-wrapper";
 import MovieGenres from "@/app/components/movies/detail/genres";
@@ -8,14 +9,10 @@ import MoviePlot from "@/app/components/movies/detail/plot";
 import MovieDetailPoster from "@/app/components/movies/detail/poster";
 import MovieRatingWrapper from "@/app/components/movies/detail/rating/rating-wrapper";
 import { getMovieDetail } from "@/app/helpers/fetch-data";
-import pageStyles from "@/app/page.module.scss";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { use } from "react";
-import "../../globals.scss";
-import styles from "./page.module.scss";
-
 export default function MovieDetailPage({
   params,
 }: {
@@ -45,58 +42,67 @@ export default function MovieDetailPage({
   });
 
   if (isLoading) {
-    return <Box className={styles.noResults}>Loading the detail of movie</Box>;
+    return (
+      <Box sx={{ color: "text.secondary", textAlign: "center", mt: 10 }}>
+        Loading the detail of movie
+      </Box>
+    );
   }
 
   if (error) {
-    return <Box className={styles.noResults}>Error</Box>;
+    return <Box sx={{ color: "red", textAlign: "center", mt: 10 }}>Error</Box>;
   }
 
-  if (!movie) {
-    return null;
-  }
+  if (!movie) return null;
 
   return (
-    <div className={pageStyles.page}>
-      <main className={pageStyles.main}>
-        <Image
-          src="/assets/detailBg.jpeg"
-          alt="background"
-          fill
-          priority
-          style={{ objectFit: "cover" }}
-          className={pageStyles.bg}
-        />
-        <Container maxWidth={"lg"} className={styles.movieDetail}>
-          <Box className={styles.tpl}>
-            <Grid container spacing={8} className={styles.wrapper}>
-              <Grid className={styles.wrapperItem}>
-                <MovieDetailPoster poster={movie.Poster} title={movie.Title} />
-              </Grid>
-              <Grid className={styles.infoWrapper}>
-                <MovieLike movie={movie} />
-                <Typography
-                  variant="h3"
-                  component={"h3"}
-                  className={styles.title}
-                >
-                  {movie.Title}
-                </Typography>
-                <MovieGenres genre={movie.Genre} rated={movie.Rated} />
-                <MovieMeta movie={movie} />
-                <MovieRatingWrapper
-                  imdbRating={movie.imdbRating}
-                  imdbVotes={movie.imdbVotes}
-                  Ratings={movie.Ratings}
-                />
-                <MoviePlot plot={movie.Plot} />
-                <MovieAwards awards={movie.Awards} />
-                <MovieDetailsInfoWrapper details={movie.details} />
-              </Grid>
-            </Grid>
-          </Box>
-        </Container>
-      </main>
-    </div>
+    <Box sx={{ minHeight: "100vh", position: "relative" }}>
+      <Image
+        src="/assets/detailBg.jpeg"
+        alt="background"
+        fill
+        priority
+        style={{ objectFit: "cover", opacity: 0.1 }}
+      />
+
+      <Container
+        maxWidth="lg"
+        sx={{ position: "relative", zIndex: 2, pt: 6, pb: 10 }}
+      >
+        <Grid container spacing={6}>
+          <Grid size={{ xs: 12, md: 5 }}>
+            <Box sx={{ height: 700 }}>
+              <MovieDetailPoster poster={movie.Poster} title={movie.Title} />
+            </Box>
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 7 }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <MovieLike movie={movie} />
+
+              <Typography
+                variant="h3"
+                sx={{ fontWeight: 700, color: "text.secondary" }}
+              >
+                {movie.Title}
+              </Typography>
+
+              <MovieGenres genre={movie.Genre} rated={movie.Rated} />
+              <MovieMeta movie={movie} />
+
+              <MovieRatingWrapper
+                imdbRating={movie.imdbRating}
+                imdbVotes={movie.imdbVotes}
+                Ratings={movie.Ratings}
+              />
+
+              <MoviePlot plot={movie.Plot} />
+              <MovieAwards awards={movie.Awards} />
+              <MovieDetailsInfoWrapper details={movie.details} />
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

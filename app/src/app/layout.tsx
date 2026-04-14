@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Navbar from "./components/navigation/nav-wrapper";
-import "./globals.scss";
 import ReactQueryProvider from "./ReactQueryProvider";
 import ThemeClient from "./ThemeClient";
 
