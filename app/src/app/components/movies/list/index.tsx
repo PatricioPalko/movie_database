@@ -1,6 +1,6 @@
 import { MoviesListProps } from "@/app/types/Types";
 import { Container, List, Typography } from "@mui/material";
-import MovieCard from "../card";
+import MovieCardWrapper from "../card/wrapper";
 
 const EmptyState = ({ message }: { message: string }) => (
   <Typography
@@ -26,7 +26,7 @@ const MoviesList = ({ movies, loading, error }: MoviesListProps) => {
         }}
       >
         {movies.map((movie) => (
-          <MovieCard key={movie.imdbID} movie={movie} />
+          <MovieCardWrapper key={movie.imdbID} movie={movie} />
         ))}
       </List>
     </Container>

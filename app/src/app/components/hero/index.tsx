@@ -1,11 +1,10 @@
 "use client";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import { Suspense } from "react";
 import { FilterInput } from "../filter-input";
 
 export default function HomeHero() {
-  const theme = useTheme();
-  console.log(theme.palette.text.primary);
   return (
     <Box
       sx={{
@@ -70,7 +69,9 @@ export default function HomeHero() {
           Discover movies, ratings and details instantly
         </Typography>
         <Box sx={{ mt: 4 }}>
-          <FilterInput />
+          <Suspense fallback={null}>
+            <FilterInput />
+          </Suspense>
         </Box>
       </Box>
     </Box>
