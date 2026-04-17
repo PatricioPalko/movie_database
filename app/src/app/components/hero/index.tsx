@@ -26,7 +26,7 @@ export default function HomeHero() {
         priority
         style={{
           objectFit: "cover",
-          filter: "brightness(1) contrast(1.1)",
+          filter: "brightness(1.4) contrast(1.1)",
           transform: "scale(1.05)",
         }}
       />
@@ -36,7 +36,7 @@ export default function HomeHero() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3), rgba(0,0,0,0.9))",
+            "linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4), rgba(0,0,0,0.7))",
         }}
       />
 
@@ -55,7 +55,7 @@ export default function HomeHero() {
             letterSpacing: 2,
             color: "text.primary",
             mb: 2,
-            textShadow: "0 0 5px rgba(52, 211, 153, 0.4)",
+            textShadow: "0 0 5px rgba(52, 211, 153, 0.3)",
           }}
         >
           Movie database

@@ -1,5 +1,6 @@
 import { Box, Container } from "@mui/material";
 import { IMenuItem } from "../../../types/Types";
+import LoginButtons from "../login/buttons";
 import NavItem from "../nav-item";
 
 const NAV_ITEMS: IMenuItem[] = [
@@ -21,7 +22,14 @@ const NavigationWrapper = () => {
         borderBottom: "2px solid rgba(255,255,255,0.1)",
       }}
     >
-      <Container maxWidth="xl">
+      <Container
+        maxWidth="xl"
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -41,6 +49,7 @@ const NavigationWrapper = () => {
             ))}
           </Box>
         </Box>
+        <LoginButtons />
       </Container>
     </Box>
   );
