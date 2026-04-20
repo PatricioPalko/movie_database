@@ -2,9 +2,9 @@
 
 Movie database project created by Patrik Palko. Check it out - [https://movie-database-delta.vercel.app/](https://movie-database-delta.vercel.app/)
 
-![Home](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/mockup_movie3.png)
-![Detail](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/mockup_movie.png)
-![Favourites](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/mockup_movie2.png)
+![Home](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/movie_mockup.jpg)
+![Detail](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/movie_mockup2.jpg)
+![Favourites](https://github.com/PatricioPalko/movie_database/blob/master/app/public/assets/movie_mockup3.jpg)
 
 ## Getting Started
 
@@ -26,21 +26,20 @@ cd app/
 
 ## Color Reference
 
-| Color           | Hex                                                              |
-| --------------- | ---------------------------------------------------------------- |
-| Main Color      | ![#212730](https://via.placeholder.com/10/212730?text=+) #212730 |
-| Secondary Color | ![#393e46](https://via.placeholder.com/10/393e46?text=+) #393e46 |
-| Third Color     | ![#ffd369](https://via.placeholder.com/10/ffd369?text=+) #ffd369 |
-| Fourth Color    | ![#74777d](https://via.placeholder.com/10/74777d?text=+) #74777d |
-| Font Color      | ![#eeeeee](https://via.placeholder.com/10/eeeeee?text=+) #eeeeee |
+| Color            | Hex                                                              |
+| ---------------- | ---------------------------------------------------------------- |
+| Primary Color    | ![#34D399](https://via.placeholder.com/10/212730?text=+) #34D399 |
+| Secondary Color  | ![#F9FAFB](https://via.placeholder.com/10/393e46?text=+) #F9FAFB |
+| Background Color | ![#0A0F1C](https://via.placeholder.com/10/ffd369?text=+) #0A0F1C |
+| Font Color       | ![#ffffff](https://via.placeholder.com/10/eeeeee?text=+) #ffffff |
 
 ## Built With
 
 - [NextJS](https://nextjs.org/) - The React Framework for the Web
 - [TypeScript](https://www.typescriptlang.org/) - JavaScript with syntax for types
-- [Redux](https://redux.js.org/) - A JS library for predictable and maintainable global state management
+- [Zustand](https://zustand.docs.pmnd.rs/) - State management
 - **LOVE** - Enthusiasm for web developing and graphic design
 
 ## Authors
 
-- **Patrik Palko** - [patrikpalko.com](https://patrikpalko.com/)
+- **Patrik Palko**

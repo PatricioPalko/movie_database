@@ -8,8 +8,8 @@ export default function MovieRatingWrapper({
   imdbVotes,
   Ratings,
 }: {
-  imdbRating: number;
-  imdbVotes: number;
+  imdbRating: string;
+  imdbVotes: string;
   Ratings: Rating[];
 }) {
   return (

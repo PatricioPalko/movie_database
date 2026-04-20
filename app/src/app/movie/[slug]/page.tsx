@@ -1,5 +1,3 @@
-"use client";
-
 import MovieAwards from "@/app/components/movies/detail/awards";
 import MovieDetailsInfoWrapper from "@/app/components/movies/detail/details-info/detail-info-wrapper";
 import MovieGenres from "@/app/components/movies/detail/genres";
@@ -10,50 +8,29 @@ import MovieDetailPoster from "@/app/components/movies/detail/poster";
 import MovieRatingWrapper from "@/app/components/movies/detail/rating/rating-wrapper";
 import { getMovieDetail } from "@/app/helpers/fetch-data";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import { use } from "react";
-export default function MovieDetailPage({
+import { notFound } from "next/navigation";
+export default async function MovieDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = use(params);
+  const { slug } = await params;
 
-  const {
-    data: movie,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["movie", slug],
-    queryFn: () => getMovieDetail(slug),
-    enabled: !!slug,
-    select: (data) => ({
-      ...data,
-      details: {
-        Released: data.Released,
-        Language: data.Language,
-        Director: data.Director,
-        Writer: data.Writer,
-        Actors: data.Actors,
-        Country: data.Country,
-      },
-    }),
-  });
+  const movie = await getMovieDetail(slug);
 
-  if (isLoading) {
-    return (
-      <Box sx={{ color: "text.secondary", textAlign: "center", mt: 10 }}>
-        Loading the detail of movie
-      </Box>
-    );
+  if (!movie || movie.Response === "False") {
+    notFound();
   }
 
-  if (error) {
-    return <Box sx={{ color: "red", textAlign: "center", mt: 10 }}>Error</Box>;
-  }
-
-  if (!movie) return null;
+  const details = {
+    Released: movie.Released,
+    Language: movie.Language,
+    Director: movie.Director,
+    Writer: movie.Writer,
+    Actors: movie.Actors,
+    Country: movie.Country,
+  };
 
   return (
     <Box sx={{ minHeight: "100vh", position: "relative" }}>
@@ -98,7 +75,7 @@ export default function MovieDetailPage({
 
               <MoviePlot plot={movie.Plot} />
               <MovieAwards awards={movie.Awards} />
-              <MovieDetailsInfoWrapper details={movie.details} />
+              <MovieDetailsInfoWrapper details={details} />
             </Box>
           </Grid>
         </Grid>

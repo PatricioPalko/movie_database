@@ -5,8 +5,8 @@ export default function GaugeChart({
   imdbRating,
   imdbVotes,
 }: {
-  imdbRating: number;
-  imdbVotes: number;
+  imdbRating: string;
+  imdbVotes: string;
 }) {
   return (
     <Box

@@ -23,6 +23,8 @@ export interface Movie {
   Runtime: string;
   totalSeasons?: string;
   Rated: string;
+  Released: string;
+  Language: string;
 }
 
 export interface Page {
