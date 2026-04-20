@@ -6,24 +6,24 @@ import { Box, Button, Typography } from "@mui/material";
 import { MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
 
 export default function MovieLike({ movie }: { movie: Movie | undefined }) {
-  const { favourites, addFavourite, removeFavourite } = useStore();
+  const { favorites, addFavorite, removeFavorite } = useStore();
 
-  const isFavourite = favourites.some((f) => f.imdbID === movie?.imdbID);
+  const isFavorite = favorites.some((f) => f.imdbID === movie?.imdbID);
 
   const handleLikeClick = () => {
     if (!movie) return;
 
-    if (isFavourite) {
-      removeFavourite(movie.imdbID);
+    if (isFavorite) {
+      removeFavorite(movie.imdbID);
     } else {
-      addFavourite(movie);
+      addFavorite(movie);
     }
   };
 
   return (
     <Box>
       <Button onClick={handleLikeClick} sx={{ minWidth: 0, gap: 1 }}>
-        {isFavourite ? (
+        {isFavorite ? (
           <MdOutlineStar size={22} color="#FBBF24" />
         ) : (
           <MdOutlineStarOutline size={22} color="#FBBF24" />
@@ -37,7 +37,7 @@ export default function MovieLike({ movie }: { movie: Movie | undefined }) {
             fontWeight: 600,
           }}
         >
-          {isFavourite ? "In your list" : "Add to favourites"}
+          {isFavorite ? "In your list" : "Add to favorites"}
         </Typography>
       </Button>
     </Box>

@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import MovieCardWrapper from "../card/wrapper";
 import EmptyState from "../empty-state";
 
-type Mode = "search" | "favourites";
+type Mode = "search" | "favorites";
 
 const MoviesList = ({
   movies,
@@ -31,8 +31,8 @@ const MoviesList = ({
     return <EmptyState message={`No movies found for "${searchValue}"`} />;
   }
 
-  if (mode === "favourites" && movies.length === 0) {
-    return <EmptyState message="No favourites yet" />;
+  if (mode === "favorites" && movies.length === 0) {
+    return <EmptyState message="No favorites yet" />;
   }
 
   return (

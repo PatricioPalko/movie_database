@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { MdOutlineStar } from "react-icons/md";
 
-const FavouriteBadge = () => (
+const FavoriteBadge = () => (
   <Box
     sx={{
       position: "absolute",
@@ -23,4 +23,4 @@ const FavouriteBadge = () => (
   </Box>
 );
 
-export default FavouriteBadge;
+export default FavoriteBadge;

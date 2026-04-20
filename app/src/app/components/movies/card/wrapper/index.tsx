@@ -3,14 +3,14 @@ import { Movie, MovieCardProps } from "@/app/types/Types";
 import { useStore } from "@/store/useStore";
 import { Box, ListItem } from "@mui/material";
 import MovieCardContainer from "../container";
-import FavouriteBadge from "../favourite-badge";
+import FavoriteBadge from "../favorite-badge";
 import MovieCardImage from "../image";
 import MovieCardOverlay from "../overlay";
 
 export const MovieCardWrapper = ({ movie }: MovieCardProps) => {
-  const { favourites } = useStore();
+  const { favorites } = useStore();
 
-  const isFavourite = favourites.some((f: Movie) => f.imdbID === movie.imdbID);
+  const isFavorite = favorites.some((f: Movie) => f.imdbID === movie.imdbID);
 
   return (
     <ListItem sx={{ listStyle: "none", p: 1 }}>
@@ -34,7 +34,7 @@ export const MovieCardWrapper = ({ movie }: MovieCardProps) => {
               pointerEvents: "none",
             }}
           />
-          {isFavourite && <FavouriteBadge />}
+          {isFavorite && <FavoriteBadge />}
           <MovieCardOverlay movie={movie} />
         </MovieCardContainer>
       </PrefetchLink>

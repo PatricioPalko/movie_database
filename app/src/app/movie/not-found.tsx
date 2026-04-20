@@ -55,7 +55,7 @@ export default function MovieNotFound() {
 
           <Button
             component={Link}
-            href="/favourites"
+            href="/favorites"
             variant="outlined"
             sx={{
               color: "white",
@@ -66,7 +66,7 @@ export default function MovieNotFound() {
               },
             }}
           >
-            Go to favourites
+            Go to favorites
           </Button>
         </Stack>
       </Box>

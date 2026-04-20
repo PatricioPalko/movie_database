@@ -5,8 +5,8 @@ import { Box, Container, Typography } from "@mui/material";
 import Image from "next/image";
 import MoviesList from "../components/movies/list";
 
-export default function FavouriteMoviesPage() {
-  const { favourites } = useStore();
+export default function FavoriteMoviesPage() {
+  const { favorites } = useStore();
 
   return (
     <Box sx={{ minHeight: "100vh", position: "relative" }}>
@@ -37,10 +37,10 @@ export default function FavouriteMoviesPage() {
             fontWeight: 700,
           }}
         >
-          Favourite movies
+          Favorite movies
         </Typography>
 
-        <MoviesList movies={favourites} loading={false} mode="favourites" />
+        <MoviesList movies={favorites} loading={false} mode="favorites" />
       </Container>
     </Box>
   );

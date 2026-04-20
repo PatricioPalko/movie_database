@@ -53,8 +53,8 @@ export interface IMenuItem {
   url: string;
 }
 
-export interface FavouritesState {
-  favouriteMoviesList: Movie[];
+export interface FavoritesState {
+  favoriteMoviesList: Movie[];
 }
 
 export interface ValueState {

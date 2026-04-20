@@ -3,12 +3,12 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type Store = {
-  favourites: Movie[];
+  favorites: Movie[];
   searchValue: string;
   page: number;
 
-  addFavourite: (movie: Movie) => void;
-  removeFavourite: (id: string) => void;
+  addFavorite: (movie: Movie) => void;
+  removeFavorite: (id: string) => void;
   setSearchValue: (searchValue: string) => void;
   setPage: (p: number) => void;
 };
@@ -16,27 +16,27 @@ type Store = {
 export const useStore = create<Store>()(
   persist(
     (set) => ({
-      favourites: [],
+      favorites: [],
       searchValue: "",
       page: 1,
-      addFavourite: (movie) =>
+      addFavorite: (movie) =>
         set((state) => {
-          if (state.favourites.some((m) => m.imdbID === movie.imdbID)) {
+          if (state.favorites.some((m) => m.imdbID === movie.imdbID)) {
             return state;
           }
-          return { favourites: [...state.favourites, movie] };
+          return { favorites: [...state.favorites, movie] };
         }),
 
-      removeFavourite: (id) =>
+      removeFavorite: (id) =>
         set((state) => ({
-          favourites: state.favourites.filter((m) => m.imdbID !== id),
+          favorites: state.favorites.filter((m) => m.imdbID !== id),
         })),
 
       setSearchValue: (searchValue) => set({ searchValue }),
       setPage: (p) => set({ page: p }),
     }),
     {
-      name: "favouriteMoviesList",
+      name: "favoriteMoviesList",
     },
   ),
 );

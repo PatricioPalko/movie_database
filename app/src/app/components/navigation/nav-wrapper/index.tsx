@@ -1,12 +1,13 @@
 import { Box, Container } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 import { IMenuItem } from "../../../types/Types";
 import LoginButtons from "../login/buttons";
 import NavItem from "../nav-item";
 
 const NAV_ITEMS: IMenuItem[] = [
   { label: "Home", url: "/" },
-  { label: "Favourites", url: "/favourites" },
+  { label: "Favorites", url: "/favorites" },
 ];
 
 const NavigationWrapper = () => {
@@ -31,7 +32,9 @@ const NavigationWrapper = () => {
           alignItems: "center",
         }}
       >
-        <Image src="/assets/logo.svg" width={90} height={40} alt="logo" />
+        <Link href="/">
+          <Image src="/assets/logo.svg" width={90} height={40} alt="logo" />
+        </Link>
         <Box
           sx={{
             display: "flex",
