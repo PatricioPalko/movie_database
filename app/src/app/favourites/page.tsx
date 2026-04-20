@@ -40,7 +40,7 @@ export default function FavouriteMoviesPage() {
           Favourite movies
         </Typography>
 
-        <MoviesList movies={favourites} loading={false} />
+        <MoviesList movies={favourites} loading={false} mode="favourites" />
       </Container>
     </Box>
   );

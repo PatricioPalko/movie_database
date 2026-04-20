@@ -9,17 +9,21 @@ const fetchMoviesByPage = async (
   page: number,
   searchTerm: string,
 ): Promise<Page> => {
-  if (!searchTerm) return { movies: [], nextPage: null, totalPages: 0 };
+  if (!searchTerm || searchTerm.trim().length < 3) {
+    return { movies: [], nextPage: null, totalPages: 0 };
+  }
 
   const response = await getAllMovies(searchTerm, page);
   const data = await response.json();
 
-  if (data.Response === "False") throw new Error("Failed to fetch movies");
+  if (data.Response === "False") {
+    return { movies: [], nextPage: null, totalPages: 0 };
+  }
 
   return {
-    movies: data.Search,
+    movies: data.Search ?? [],
     nextPage: null,
-    totalPages: Math.ceil(data.totalResults / 10),
+    totalPages: Math.ceil(Number(data.totalResults ?? 0) / 10),
   };
 };
 
@@ -33,7 +37,7 @@ export function useMovies() {
   const { data, isLoading, error } = useQuery<Page>({
     queryKey: ["movies", searchValue, page],
     queryFn: () => fetchMoviesByPage(page, searchValue),
-    placeholderData: (prev) => prev,
+    // placeholderData: (prev) => prev,
   });
 
   const handleSearch = (value: string) => {

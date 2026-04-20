@@ -107,7 +107,7 @@ export const FilterInput: React.FC = () => {
             backgroundColor: "rgba(255,255,255,0.05)",
             boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
             transition: "all 0.25s ease",
-
+            border: "1px solid rgba(255,255,255,0.2)",
             "&:before": { display: "none" },
             "&:after": { display: "none" },
             "&:hover:not(.Mui-disabled):before": {
@@ -117,6 +117,9 @@ export const FilterInput: React.FC = () => {
 
           input: {
             color: "text.primary",
+            "&::placeholder": {
+              opacity: 1,
+            },
           },
 
           "& .MuiInput-root:hover": {

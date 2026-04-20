@@ -1,19 +1,39 @@
+"use client";
 import { MoviesListProps } from "@/app/types/Types";
-import { Container, List, Typography } from "@mui/material";
+import { Container, List } from "@mui/material";
+import { useSearchParams } from "next/navigation";
 import MovieCardWrapper from "../card/wrapper";
+import EmptyState from "../empty-state";
 
-const EmptyState = ({ message }: { message: string }) => (
-  <Typography
-    sx={{ color: "text.secondary", textAlign: "center", py: 4, opacity: 0.7 }}
-  >
-    {message}
-  </Typography>
-);
+type Mode = "search" | "favourites";
 
-const MoviesList = ({ movies, loading, error }: MoviesListProps) => {
-  if (loading) return <EmptyState message="Loading the list of movies" />;
+const MoviesList = ({
+  movies,
+  loading,
+  error,
+  mode = "search",
+}: MoviesListProps & { mode?: Mode }) => {
+  const searchParams = useSearchParams();
+  const searchValue = mode === "search" ? (searchParams.get("q") ?? "") : "";
+
+  if (mode === "search") {
+    const isEmptySearch = !searchValue;
+    const isTooShort = searchValue.length > 0 && searchValue.length < 3;
+
+    if (isEmptySearch) return <EmptyState message="Search for movies" />;
+    if (isTooShort) return <EmptyState message="Type at least 3 characters" />;
+  }
+
+  if (loading) return <EmptyState message="Loading..." />;
   if (error) return <EmptyState message="Something went wrong" />;
-  if (!movies.length) return <EmptyState message="No results" />;
+
+  if (mode === "search" && movies.length === 0) {
+    return <EmptyState message={`No movies found for "${searchValue}"`} />;
+  }
+
+  if (mode === "favourites" && movies.length === 0) {
+    return <EmptyState message="No favourites yet" />;
+  }
 
   return (
     <Container maxWidth="xl">

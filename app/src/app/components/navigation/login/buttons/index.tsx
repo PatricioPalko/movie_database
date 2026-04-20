@@ -12,10 +12,6 @@ export default function LoginButtons() {
 
   return (
     <Stack direction="row" spacing={2}>
-      <LoginButton variant="outlined" href="/login">
-        Log in
-      </LoginButton>
-
       <LoginButton
         variant="contained"
         href="/login"
@@ -28,7 +24,7 @@ export default function LoginButtons() {
           },
         }}
       >
-        Register
+        Sign in
       </LoginButton>
     </Stack>
   );

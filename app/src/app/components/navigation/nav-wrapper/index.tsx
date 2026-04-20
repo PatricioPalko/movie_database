@@ -1,4 +1,5 @@
 import { Box, Container } from "@mui/material";
+import Image from "next/image";
 import { IMenuItem } from "../../../types/Types";
 import LoginButtons from "../login/buttons";
 import NavItem from "../nav-item";
@@ -30,6 +31,7 @@ const NavigationWrapper = () => {
           alignItems: "center",
         }}
       >
+        <Image src="/assets/logo.svg" width={90} height={40} alt="logo" />
         <Box
           sx={{
             display: "flex",

@@ -2,6 +2,7 @@
 
 import { Box, Typography } from "@mui/material";
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
@@ -67,6 +68,24 @@ export default function LoginPage() {
           icon={FaGithub}
           onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
         />
+        <Typography sx={{ my: 3, color: "text.secondary", fontSize: 14 }}>
+          or continue to{" "}
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <Typography
+              component="span"
+              sx={{
+                color: "text.primary",
+                cursor: "pointer",
+                fontSize: 14,
+                "&:hover": {
+                  borderBottom: "1px solid",
+                },
+              }}
+            >
+              home page
+            </Typography>
+          </Link>
+        </Typography>
       </Box>
     </Box>
   );
