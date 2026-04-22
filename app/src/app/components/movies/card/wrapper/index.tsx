@@ -8,7 +8,7 @@ import MovieCardImage from "../image";
 import MovieCardOverlay from "../overlay";
 
 export const MovieCardWrapper = ({ movie }: MovieCardProps) => {
-  const { favorites } = useStore();
+  const favorites = useStore((state) => state.favorites);
 
   const isFavorite = favorites.some((f: Movie) => f.imdbID === movie.imdbID);
 

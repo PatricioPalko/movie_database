@@ -6,7 +6,7 @@ import Image from "next/image";
 import MoviesList from "../components/movies/list";
 
 export default function FavoriteMoviesPage() {
-  const { favorites } = useStore();
+  const favorites = useStore((state) => state.favorites);
 
   return (
     <Box sx={{ minHeight: "100vh", position: "relative" }}>

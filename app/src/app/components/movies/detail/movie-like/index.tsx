@@ -6,7 +6,9 @@ import { Box, Button, Typography } from "@mui/material";
 import { MdOutlineStar, MdOutlineStarOutline } from "react-icons/md";
 
 export default function MovieLike({ movie }: { movie: Movie | undefined }) {
-  const { favorites, addFavorite, removeFavorite } = useStore();
+  const favorites = useStore((state) => state.favorites);
+  const addFavorite = useStore((state) => state.addFavorite);
+  const removeFavorite = useStore((state) => state.removeFavorite);
 
   const isFavorite = favorites.some((f) => f.imdbID === movie?.imdbID);
 
